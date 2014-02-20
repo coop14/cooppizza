@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clientes</title>
+  </head>
+  <body>
+    <h1>Clientes</h1>
+    <h4>Novos clientes</h4>
+    <a href="novo">Cadastrar cliente</a>
+    <div class="form">
+      <h4>Consultar cliente</h4>
+      <form method="post" action="consulta">
+        {% csrf_token %}
+        <label for="email">e-mail</label>
+        <input type="text" id="email" name="email" size="40" />
+        <input type="submit" value="Consultar!"/>
+      </form>
+    </div>
+  </body>
+</html>
