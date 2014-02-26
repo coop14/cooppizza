@@ -33,3 +33,24 @@ def dados(request, cliente_id):
       'cliente': cliente
       }
     )
+
+def enderecoNovo(request, cliente_id):
+  try:
+    cliente = Cliente.objects.get(pk=cliente_id)
+  except (Cliente.DoesNotExist):
+    raise Http404
+  else:
+    return render(request, 'clientes/endereco.html', {
+      'cliente': cliente
+      }
+    )
+
+def enderecoDeletar(request, cliente_id, endereco_id):
+  try:
+    cliente = Cliente.objects.get(pk=cliente_id)
+    endereco = Endereco.objects.get(pk=endereco_id)
+  except (Cliente.DoesNotExist):
+    raise Http404
+  else:
+    endereco.delete()
+    return redirect('/clientes/%d' % cliente.id)
