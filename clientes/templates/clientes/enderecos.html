@@ -8,7 +8,9 @@
     <h3>{{ cliente.email }}</h3>
     <h4>Endereços associados:</h4>
     <ul>
-      <li>j@k</li>
+{% for endereco in cliente.endereco_set.all %}
+      <li>{{ endereco.logradouro }}, {{ endereco.numero }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }}</li>
+{% endfor %}
     </ul>
     <a href="{{ cliente.id }}/enderecos/novo">Novo endereço</a>
   </body>
