@@ -1,6 +1,5 @@
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, HttpResponse
-#from django.http.response import HttpResponseNotFound, HttpResponseForbidden
 from django.shortcuts import redirect, render
 from django.template import RequestContext, loader
 
@@ -16,12 +15,10 @@ def consulta(request):
       cliente = Cliente.objects.get(email=request.POST['email'])
     except (Cliente.DoesNotExist):
       raise Http404
-      #return HttpResponseNotFound()
     else:
       return redirect('/clientes/%d' % cliente.id)
   else:
     raise PermissionDenied
-    #return HttpResponseForbidden()
 
 def dados(request, cliente_id):
   try:
@@ -54,3 +51,15 @@ def enderecoDeletar(request, cliente_id, endereco_id):
   else:
     endereco.delete()
     return redirect('/clientes/%d' % cliente.id)
+
+def enderecoAdicionar(request, cliente_id):
+  if request.method == 'POST':
+    try:
+      cliente = Cliente.objects.get(pk=cliente_id)
+      endereco = cliente.endereco_set.create(cep=request.POST['cep'], logradouro=request.POST['logradouro'], numero=request.POST['numero'], bairro=request.POST['bairro'], cidade=request.POST['cidade'], estado=request.POST['estado'])
+    except (Cliente.DoesNotExist):
+      raise Http404
+    else:
+      return redirect('/clientes/%d' % cliente.id)
+  else:
+    raise PermissionDenied
