@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cliente</title>
+  </head>
+  <body>
+    <a href="/clientes">Voltar</a>
+    <h1>Cliente</h1>
+    <div class="form">
+      <h4>Dados do cliente:</h4>
+      <form method="post" action="adicionar">
+      {% csrf_token %}
+      <ul>
+        <li>
+          <label>e-mail:</label>
+          <input type="text" name="email" value="" />
+        </li>
+      </ul>
+      <input type="submit" value="Adicionar!"/>
+    </div>
+  </body>
+</html>

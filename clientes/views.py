@@ -9,7 +9,18 @@ def index(request):
   template = loader.get_template('clientes/index.html')
   return HttpResponse(template.render(RequestContext(request)))
 
-def consulta(request):
+def clienteNovo(request):
+  return render(request, 'clientes/cliente.html')
+
+def clienteAdicionar(request):
+  if request.method == 'POST':
+    cliente = Cliente(email=request.POST['email'], senha="123")
+    cliente.save()
+    return redirect('/clientes/%d' % cliente.id)
+  else:
+    raise PermissionDenied
+
+def clienteConsulta(request):
   if request.method == 'POST':
     try:
       cliente = Cliente.objects.get(email=request.POST['email'])
@@ -20,7 +31,7 @@ def consulta(request):
   else:
     raise PermissionDenied
 
-def dados(request, cliente_id):
+def clienteDados(request, cliente_id):
   try:
     cliente = Cliente.objects.get(pk=cliente_id)
   except (Cliente.DoesNotExist):
