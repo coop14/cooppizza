@@ -4,7 +4,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.template import RequestContext, loader
 
-from clientes.models import Cliente
+from clientes.models import Cliente, Endereco
 
 def index(request):
   template = loader.get_template('clientes/index.html')
