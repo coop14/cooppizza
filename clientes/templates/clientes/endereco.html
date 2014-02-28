@@ -4,7 +4,7 @@
     <title>Cliente - Endereços</title>
   </head>
   <body>
-    <a href="/clientes/{{ cliente.id }}">Voltar</a>
+    <a href="{% url 'clienteDados' cliente.id %}">Voltar</a>
     <h1>Cliente #{{ cliente.id }}</h1>
     <h3>{{ cliente.email }}</h3>
     <div class="form">

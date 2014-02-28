@@ -4,15 +4,15 @@
     <title>Cliente - Endereços</title>
   </head>
   <body>
-    <a href="/clientes/">Voltar</a>
+    <a href="{% url 'index' %}">Voltar</a>
     <h1>Cliente #{{ cliente.id }}</h1>
     <h3>{{ cliente.email }}</h3>
     <h4>Endereços associados:</h4>
     <ul>
 {% for endereco in cliente.endereco_set.all %}
-      <li>{{ endereco.logradouro }}, {{ endereco.numero }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} [<a href="{{ cliente.id }}/enderecos/deletar/{{ endereco.id }}">deletar</a>]</li>
+      <li>{{ endereco.logradouro }}, {{ endereco.numero }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} [<a href="{% url 'enderecoDeletar' cliente.id endereco.id %}">deletar</a>]</li>
 {% endfor %}
     </ul>
-    <a href="{{ cliente.id }}/enderecos/novo">Novo endereço</a>
+    <a href="{% url 'enderecoNovo' cliente.id %}">Novo endereço</a>
   </body>
 </html>
