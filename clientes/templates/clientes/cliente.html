@@ -9,14 +9,15 @@
     <div class="form">
       <h4>Dados do cliente:</h4>
       <form method="post" action="adicionar">
-      {% csrf_token %}
-      <ul>
-        <li>
-          <label>e-mail:</label>
-          <input type="text" name="email" value="" />
-        </li>
-      </ul>
-      <input type="submit" value="Adicionar!"/>
+        {% csrf_token %}
+        <ul>
+          <li>
+            <label>e-mail:</label>
+            <input type="text" name="email" value="" />
+          </li>
+        </ul>
+        <input type="submit" value="Adicionar!"/>
+      </form>
     </div>
   </body>
 </html>
