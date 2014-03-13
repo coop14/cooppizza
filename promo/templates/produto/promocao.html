@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Produto</title>
+  </head>
+  <body>
+    <h1>Promoção</h1>
+	<label for="nome">Nome:</label>
+    {{produto.name}}
+	<br><br>
+	<label for="preço">Preço:</label>
+	{{produto.preco}}
+	<br><br>
+	<div class="form">
+      <form method="post" action="editar">
+        {% csrf_token %}
+		<input type="hidden" name="id" value="{{produto.id}}" />
+        <label for="desconto">Desconto:</label>
+        <input type="text" id="desconto" name="desconto" size="40" value="{{produto.desconto}}" />
+        <input type="submit" value="Alterar"/>
+      </form>
+	<br><br>
+    </div>
+	<a href="{% url 'promoExcluir' produto.id %}">Excluir</a>
+	<br><br>
+    <a href="{% url 'index' %}">Voltar</a>
+  </body>
+</html>
