@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clientes</title>
+  </head>
+  <body>
+    <a href="{% url 'index' %}">Voltar</a>
+    <h1>Clientes</h1>
+    <ul>
+{% for cliente in clientes %}
+      <li><a href="{% url 'clienteDados' cliente.id %}">{{ cliente.email }} - {{ cliente.telefone }}</a></li>
+{% endfor %}
+    </ul>
+  </body>
+</html>

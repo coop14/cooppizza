@@ -2,6 +2,15 @@
 <html>
   <head>
     <title>Cliente - Endereços</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+$(function() {
+  $('.numeric').keyup(function () {
+    if (this.value != this.value.replace(/[^0-9\.]/g, ''))
+      this.value = this.value.replace(/[^0-9\.]/g, '');
+  });
+});
+    </script>
   </head>
   <body>
     <a href="{% url 'clienteDados' cliente.id %}">Voltar</a>
@@ -14,7 +23,7 @@
         <ul>
           <li>
             <label>CEP:</label>
-            <input type="text" name="cep" value="" />
+            <input type="text" name="cep" value="" class="numeric" />
           </li>
           <li>
             <label>Logradouro:</label>

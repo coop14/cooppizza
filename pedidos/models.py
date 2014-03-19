@@ -1,14 +1,10 @@
 from django.db import models
 
-class Cliente(models.Model):
-  telefone = models.CharField(max_length=15)
-  email = models.CharField(max_length=50)
-  senha = models.CharField(max_length=20)
-  def __unicode__(self):
-    return self.email
+# Create your models here.
 
-class Endereco(models.Model):
-  cliente = models.ForeignKey(Cliente)
+class Pedido(models.Model):
+  cliente = models.ForeignKey(clientes.models.Cliente)
+  telefone = models.CharField(max_length=15)
   cep = models.CharField(max_length=8)
   logradouro = models.CharField(max_length=50)
   numero = models.CharField(max_length=5)
@@ -16,5 +12,9 @@ class Endereco(models.Model):
   bairro = models.CharField(max_length=50)
   cidade = models.CharField(max_length=50)
   estado = models.CharField(max_length=2)
+  status = models.
   def __unicode__(self):
     return self.cep
+
+class PedidoItens(models.Model):
+  pedido = models.ForeignKey(Pedido)

@@ -5,6 +5,24 @@ from django.template import RequestContext, loader
 
 from clientes.models import Cliente, Endereco
 
+def web(request):
+  template = loader.get_template('clientes/indexWeb.html')
+  return HttpResponse(template.render(RequestContext(request)))
+
+def webAcesso(request):
+  if request.method == 'POST':
+    try:
+      cliente = Cliente.objects.get(email=request.POST['email'])
+    except (Cliente.DoesNotExist):
+      raise Http404
+    else:
+      if cliente.senha == request.POST['senha']:
+        return redirect('/pedidos/')
+      else:
+        raise PermissionDenied
+  else:
+    raise PermissionDenied
+
 def index(request):
   template = loader.get_template('clientes/index.html')
   return HttpResponse(template.render(RequestContext(request)))
@@ -18,7 +36,7 @@ def clienteAdicionar(request):
       cliente = Cliente.objects.get(email=request.POST['email'])
       raise PermissionDenied
     except (Cliente.DoesNotExist):
-      cliente = Cliente(email=request.POST['email'], senha="123")
+      cliente = Cliente(email=request.POST['email'], telefone=request.POST['telefone'], senha="123")
       cliente.save()
       return redirect('/clientes/%d' % cliente.id)
   else:
@@ -27,9 +45,14 @@ def clienteAdicionar(request):
 def clienteConsulta(request):
   if request.method == 'POST':
     try:
-      cliente = Cliente.objects.get(email=request.POST['email'])
+      cliente = Cliente.objects.get(telefone=request.POST['telefone'])
     except (Cliente.DoesNotExist):
-      raise Http404
+      try:
+        cliente = Cliente.objects.get(email=request.POST['email'])
+      except (Cliente.DoesNotExist):
+        raise Http404
+      else:
+        return redirect('/clientes/%d' % cliente.id)
     else:
       return redirect('/clientes/%d' % cliente.id)
   else:
@@ -45,6 +68,13 @@ def clienteDados(request, cliente_id):
       'cliente': cliente
       }
     )
+
+def clienteLista(request):
+  clientes = Cliente.objects.all()
+  return render(request, 'clientes/clientes.html', {
+    'clientes': clientes
+    }
+  )
 
 def enderecoNovo(request, cliente_id):
   try:
