@@ -4,44 +4,45 @@
     <title>Cliente - Endereços</title>
   </head>
   <body>
-    <a href="/clientes/{{ cliente.id }}">Voltar</a>
+    <a href="{% url 'clienteDados' cliente.id %}">Voltar</a>
     <h1>Cliente #{{ cliente.id }}</h1>
     <h3>{{ cliente.email }}</h3>
     <div class="form">
       <h4>Endereço:</h4>
       <form method="post" action="adicionar">
-      {% csrf_token %}
-      <ul>
-        <li>
-          <label>CEP:</label>
-          <input type="text" name="cep" value="" />
-        </li>
-        <li>
-          <label>Logradouro:</label>
-          <input type="text" name="logradouro" value="" />
-        </li>
-        <li>
-          <label>Número:</label>
-          <input type="text" name="numero" value="" />
-        </li>
-        <li>
-          <label>Complemento:</label>
-          <input type="text" name="complemento" value="" />
-        </li>
-        <li>
-          <label>Bairro:</label>
-          <input type="text" name="bairro" value="" />
-        </li>
-        <li>
-          <label>Cidade:</label>
-          <input type="text" name="cidade" value="" />
-        </li>
-        <li>
-          <label>Estado:</label>
-          <input type="text" name="estado" maxlength="2" value="" />
-        </li>
-      </ul>
-      <input type="submit" value="Adicionar!"/>
+        {% csrf_token %}
+        <ul>
+          <li>
+            <label>CEP:</label>
+            <input type="text" name="cep" value="" />
+          </li>
+          <li>
+            <label>Logradouro:</label>
+            <input type="text" name="logradouro" value="" />
+          </li>
+          <li>
+            <label>Número:</label>
+            <input type="text" name="numero" value="" />
+          </li>
+          <li>
+            <label>Complemento:</label>
+            <input type="text" name="complemento" value="" />
+          </li>
+          <li>
+            <label>Bairro:</label>
+            <input type="text" name="bairro" value="" />
+          </li>
+          <li>
+            <label>Cidade:</label>
+            <input type="text" name="cidade" value="" />
+          </li>
+          <li>
+            <label>Estado:</label>
+            <input type="text" name="estado" maxlength="2" value="" />
+          </li>
+        </ul>
+        <input type="submit" value="Adicionar!"/>
+      </form>
     </div>
   </body>
 </html>

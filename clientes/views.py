@@ -14,9 +14,13 @@ def clienteNovo(request):
 
 def clienteAdicionar(request):
   if request.method == 'POST':
-    cliente = Cliente(email=request.POST['email'], senha="123")
-    cliente.save()
-    return redirect('/clientes/%d' % cliente.id)
+    try:
+      cliente = Cliente.objects.get(email=request.POST['email'])
+      raise PermissionDenied
+    except (Cliente.DoesNotExist):
+      cliente = Cliente(email=request.POST['email'], senha="123")
+      cliente.save()
+      return redirect('/clientes/%d' % cliente.id)
   else:
     raise PermissionDenied
 
