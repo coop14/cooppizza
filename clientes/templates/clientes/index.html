@@ -2,17 +2,36 @@
 <html>
   <head>
     <title>Clientes</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+$(function() {
+  $('.numeric').keyup(function () {
+    if (this.value != this.value.replace(/[^0-9\.]/g, ''))
+      this.value = this.value.replace(/[^0-9\.]/g, '');
+  });
+});
+    </script>
   </head>
   <body>
     <h1>Clientes</h1>
+    <h4>Clientes existentes</h4>
+    <a href="{% url 'clienteLista' %}">Visualizar todos</a>
     <h4>Novos clientes</h4>
     <a href="{% url 'clienteNovo' %}">Cadastrar cliente</a>
     <div class="form">
       <h4>Consultar cliente</h4>
       <form method="post" action="consulta">
         {% csrf_token %}
-        <label for="email">e-mail</label>
-        <input type="text" id="email" name="email" size="40" />
+        <ul>
+          <li>
+            <label for="email">e-mail</label>
+            <input type="text" id="email" name="email" size="40" maxlength="40" />
+          </li>
+          <li>
+            <label for="email">telefone</label>
+            <input type="text" id="telefone" name="telefone" size="15" maxlength="15" class="numeric" />
+          </li>
+        </ul>
         <input type="submit" value="Consultar!"/>
       </form>
     </div>

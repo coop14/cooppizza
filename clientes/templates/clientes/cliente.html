@@ -2,6 +2,15 @@
 <html>
   <head>
     <title>Cliente</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+$(function() {
+  $('.numeric').keyup(function () {
+    if (this.value != this.value.replace(/[^0-9\.]/g, ''))
+      this.value = this.value.replace(/[^0-9\.]/g, '');
+  });
+});
+    </script>
   </head>
   <body>
     <a href="{% url 'index' %}">Voltar</a>
@@ -13,7 +22,11 @@
         <ul>
           <li>
             <label>e-mail:</label>
-            <input type="text" name="email" value="" />
+            <input type="text" name="email" value="" size="40" maxlength="40" />
+          </li>
+          <li>
+            <label>telefone:</label>
+            <input type="text" name="telefone" value="" size="15" maxlength="15" class="numeric" />
           </li>
         </ul>
         <input type="submit" value="Adicionar!"/>
