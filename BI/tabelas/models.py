@@ -35,3 +35,16 @@ class Contrato(models.Model):
 		return self.periodo
 		return cargahoraria
 
+class Produtos(models.Model):
+	produto = models.CharField(max_length=45)
+	def __unicode__(self):
+		return self.produto
+
+class Estoques(models.Model):
+	produto = models.ForeignKey(Produtos)
+	quantidade = models.CharField(max_length=45)
+	valorminimo = models.CharField(max_length=45)
+	def __unicode__(self):
+		return self.estoque
+
+
