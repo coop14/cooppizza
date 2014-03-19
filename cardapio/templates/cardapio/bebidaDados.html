@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Bebida {{bebida.produto.name}}</title>
+  </head>
+  <body>
+    <h1>Bebida #{{ bebida.id }} </h1>
+    <h3> <a href="/cardapio/bebida/{{bebida.id}}/deletar">Deletar Bebida</a></h3>
+    <h3>{{ bebida.produto.name }}</h3>
+    <h4>Preço:</h4> R$ {{bebida.produto.preco}} 
+    <br>
+    <a href="/cardapio/bebida/{{bebida.id}}/alterar">alterar</a>
+  </body>
+</html>

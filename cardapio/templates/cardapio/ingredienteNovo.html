@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Novo Ingrediente</title>
+	</head>
+	<body>
+		<h1>Ingrediente</h1>
+		<div class="form">
+			<form method="post" action="cadastrar">
+				{% csrf_token%}
+				<ul>
+					<li>
+						<label>Nome:</label>
+						<input type="text" name="name" value="" /> 
+						<label>Quantidade(kg):</label>
+						<input type="number" name="quantidadeEstoque" step="0.001" min ="0" value="0" />
+						<input type="submit" value="Cadastrar"/>
+					</li>
+				</ul>
+		</div>
+	</body>
+</html>

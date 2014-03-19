@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Pizza {{pizza.produto.name}}</title>
+  </head>
+  <body>
+    <h1>Pizza #{{ pizza.id }} #{{ pizza.tipoDePizza }}</h1>
+    <h3> <a href="/cardapio/pizza/{{pizza.id}}/deletar">Deletar Pizza</a></h3>
+    <h3>{{ pizza.produto.name }}</h3>
+    <h4>Preço:</h4> R$ {{pizza.produto.preco}} 
+    <br>
+    <h1> Composição da Pizza -- Recheios </h1>
+    <ul>
+{% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
+      <li> {{ pizzaingrediente.ingrediente }} -- {{ pizzaingrediente.quantidadeDeUso }} kg
+      <a href="/cardapio/pizza/{{pizza.id}}/{{pizzaingrediente.id}}/deletarIngrediente">Deletar Ingrediente</a>
+{% endfor %}
+    </ul>
+    <div class="form">
+      <form method="post" action="adicionar">
+        {% csrf_token%}
+        <ul>
+          <li>
+            <label>Ingrediente:</label>
+            <select name="name">
+                {% for ingrediente in ingredientes %}
+                  <option value="{{ ingrediente.name }}">{{ ingrediente.name }}</option>  
+                {% endfor %}
+            </select>
+            <label>Quantidade de uso padrão(kg):</label>
+            <input type="number" name="quantidadeDeUso" step="0.001" min ="0"/>
+            <input type="submit" value="Adicionar"/>
+          </li>
+        </ul>
+    </div> 
+    <a href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" target="new">Auxílio para conversão de medidas</a>
+  </body>
+</html>

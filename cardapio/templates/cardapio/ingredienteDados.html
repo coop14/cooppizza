@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Ingrediente {{ingrediente.name}}</title>
+  </head>
+  <body>
+    <h1>Ingrediente #{{ ingrediente.id }}</h1>
+    <h3> <a href="/cardapio/ingrediente/{{ingrediente.id}}/deletar">Deletar Ingrediente</a></h3>
+    <h3>{{ ingrediente.name }}</h3>
+    <h4>Quantidade no Estoque:</h4> {{ingrediente.quantidadeEstoque}} kg
+    <br>
+    <a href="/cardapio/ingrediente/{{ingrediente.id}}/alterar">alterar</a>
+  </body>
+</html>
