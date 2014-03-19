@@ -1,0 +1,18 @@
+<html> 
+	 <head>
+	 	<title> CRUD Bebida </title>
+	</head>
+	<body>
+		<h1>Cadastrar Bebida</h1>
+		<a href="bebida/nova">Cadastrar Bebida</a>
+		<h1>Consultar Bebida</h1>
+		<div class="form">
+      		<form method="post" action="bebida/consulta">
+        		{% csrf_token %}
+        		<label for="name">nome</label>
+        		<input type="text" id="name" name="name" size="100" />
+        		<input type="submit" value="Consultar"/>
+      		</form>
+    		</div>
+    </body>
+</html>

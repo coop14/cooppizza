@@ -1,0 +1,18 @@
+<html> 
+	 <head>
+	 	<title> CRUD Ingrediente </title>
+	</head>
+	<body>
+		<h1>Cadastrar Ingrediente</h1>
+		<a href="ingrediente/novo">Cadastrar Ingrediente</a>
+		<h1>Consultar Ingrediente</h1>
+		<div class="form">
+      		<form method="post" action="ingrediente/consulta">
+        		{% csrf_token %}
+        		<label for="name">nome</label>
+        		<input type="text" id="name" name="name" size="100" />
+        		<input type="submit" value="Consultar"/>
+      		</form>
+    		</div>
+    </body>
+</html>
