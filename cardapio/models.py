@@ -4,6 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 
+<<<<<<< HEAD
 class pagamento(models.Model):
 
     pedido = models.ForeignKey(Pedido) 
@@ -37,26 +38,70 @@ class Item(models.Model):
     preco = models.DecimalField(max_digits=7 , decimal_places=2)
     promocao = models.BooleanField(required=True)
     observacao = telefone = models.CharField(max_length=400)
+=======
+class pagamento
+    pedido
+    metodoPagamento
+    valorTotal
+    precisaTroco
+    promocao
+    status(foi pago?)
+
+class pedido
+    status
+    cliente
+    endereco
+    telefone
+    isdelivery
+
+class promocoesDaPizzaria
+    item
+    itemExtra
+
+class item
+    pedido
+    produto
+    quantidade
+    agrupamento
+    preco
+    promocao
+
+class pizza2sabores
+
+>>>>>>> FETCH_HEAD
 
 class Produto(models.Model):
     def __unicode__(self): 
 		return self.name
     name = models.CharField(max_length=200, unique=True)
     preco = models.DecimalField(max_digits=7 , decimal_places=2)
+<<<<<<< HEAD
     ispizza = models.BooleanField(required=True)
+=======
+    # promocao = models.BooleanField()
+    # desconto = models.DecimalField(max_digits=7, decimal_places=2)
+    ispizza
+>>>>>>> FETCH_HEAD
 
 class Ingrediente(models.Model):
     def __unicode__(self):
         return self.name
     name = models.CharField(max_length=200, unique=True)
     quantidadeEstoque = models.DecimalField(max_digits=7, decimal_places=3)
+<<<<<<< HEAD
     isrecheio
+=======
+>>>>>>> FETCH_HEAD
 
 class Pizza(models.Model):
     def __unicode__(self):
 		return self.produto.name
     produto = models.ForeignKey(Produto)
+<<<<<<< HEAD
     tamanho = models.CharField(max_length=1)
+=======
+    tamanho
+>>>>>>> FETCH_HEAD
     tipoDePizza = models.CharField(max_length=200)
     ingredientes = models.ManyToManyField(Ingrediente, through='PizzaIngrediente')
 
@@ -67,7 +112,10 @@ class Bebida(models.Model):
 
 class PizzaIngrediente(models.Model):
 	quantidadeDeUso = models.DecimalField(max_digits=7, decimal_places=3)
+<<<<<<< HEAD
     medida = models.CharField(max_lenght=100)
+=======
+>>>>>>> FETCH_HEAD
 	pizza = models.ForeignKey(Pizza)
 	ingrediente = models.ForeignKey(Ingrediente)
 
