@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Forma de pagamento Coopizza</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/carrinho.css" />
+</head>
+
+  <body>
+
+	<p class="titulo">Formas de pagamento</p>
+		
+		<form method="post" action="payment.php?payment=2816734&hash=befa5f08f84fa80e54b6" id="pagamento">
+			<table class="t noborder">
+				<tr class="formas">
+					<td>
+
+						<div id="labels-top">
+							<label title="Cartões de Crédito" class="checked pagto_grupo" data-rel="formas-cartao">
+								<span>Cartão de Crédito:</span>
+								<input type="radio" name="forma" value="cartao" />
+								<img src="img/formas/icon_cartoes.gif" alt="Cartões de Crédito" />
+							</label>
+
+							<label title="Débito em conta" class="pagto_grupo" data-rel="formas-debito">
+								<span>Débito em conta:</span>
+								<input type="radio" name="forma" value="debito" />
+								<img src="img/formas/icon_debitos.gif" alt="Débito em Conta" />
+							</label>
+
+							<label title="Boleto bancário" class="pagto_forma pagto_hide" data-rel="compra_avista_boleto">
+								<span>Boleto bancário:</span>
+								<input type="radio" name="forma" value="boleto"  />
+								<img src="img/formas/icon_boleto.gif" alt="Boleto" />
+							</label>
+
+
+							<label title="Paypal" style="margin-right:0" class="pagto_forma pagto_hide" data-rel="compra_avista_paypal">
+								<span>PayPal:</span>
+								<input type="radio" name="forma" value="paypal" />
+								<img src="img/formas/icon_paypal.gif" alt="PayPal" />
+							</label>
+						</div>
+						<div style="clear:both"></div>
+
+						<div id="formas-cartao" class="formas-grupo">
+							<p class="titulo" style="margin-bottom:20px">Escolha um cartão</p>
+
+							<label class="checked pagto_forma" title="Cartão de crédito - Visa" data-rel="compra_parcelada">
+								<img src="img/formas/icon_visa.gif" alt="VISA" />
+								<span><input type="radio" name="forma" value="visa" checked="checked" /></span>
+							</label>
+				
+							<label title="Cartão de crédito - Mastercard" class="pagto_forma" data-rel="compra_parcelada">
+								<img src="img/formas/icon_mastercard.gif" alt="Mastercard" />
+								<span><input type="radio" name="forma" value="mastercard"  /></span>
+							</label>
+
+							<label title="Cartão de crédito - Hipercard" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_hipercard.gif" alt="Hipercard" />
+								<span><input type="radio" name="forma" value="pagseguro"  /></span>
+							</label>
+				
+							<label title="Cartão de crédito - Diners" class="pagto_forma" data-rel="compra_parcelada">
+								<img src="img/formas/icon_diners.gif" alt="Diners" />
+								<span><input type="radio" name="forma" value="diners"  /></span>
+							</label>
+
+							<label title="Cartão de crédito - Aura" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_aura.gif" alt="Aura" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<label title="Cartão de crédito - Amex" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_amex.gif" alt="Amex" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<label title="Cartão de crédito - Personal" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_personalcard.gif" alt="Personal" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<!--
+							<label title="Cartão de crédito - Pleno" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="_img/formas/icon_plenocard.gif" alt="Pleno" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+							-->
+
+							<label title="Cartão de crédito - Elo" style="margin-right:0" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_elo.gif" alt="Elo" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+						</div>
+
+						<div id="formas-debito" class="formas-grupo" style="display:none">
+							<p class="titulo" style="margin-bottom:20px">Escolha um banco</p>
+
+							<label title="Débito em conta - Banco do Brasil" class="pagto_forma" data-rel="compra_avista_bb">
+								<img src="img/formas/icon_bb.gif" alt="Banco do Brasil" />
+								<span><input type="radio" name="forma" value="bb" /></span>
+							</label>
+
+							<label title="Débito em conta - Bradesco" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_bradesco.gif" alt="Bradesco" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<label title="Débito em conta - Itaú" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_itau.gif" alt="Itaú" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<label title="Débito em conta - HSBC" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_hsbc.gif" alt="HSBC" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+
+							<label title="Débito em conta - Banrisul" style="margin-right:0" class="pagto_forma" data-rel="compra_avista_pagseguro">
+								<img src="img/formas/icon_banrisul.gif" alt="Banrisul" />
+								<span><input type="radio" name="forma" value="pagseguro" /></span>
+							</label>
+						</div>
+			
+					</td>
+				</tr>
+			</table>
+			 <table class="t noborder compra compra_parcelada">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Dados da Matrícula:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em>Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>Crédito</em>
+						</div>
+					</td>
+					<td valign="top" style="vertical-align:top">
+						<div class="cartao">
+						
+							<div class="cartao_imagem">
+								<img src="img/cartao_nome.jpg" />
+							</div>
+							
+							<div class="cartao_campos">
+								<label>
+									Nome do Proprietário do cartão:<br />
+									<input type="text" name="cartao_nome" rel="cartao_nome" id="cartao_portador_id" class="campo no-copy-paste" value="" size="35"/>
+								</label>
+								<label>
+									Número do cartão:<br />
+									<input type="text" name="cartao_numero" rel="cartao_numero" id="cartao_numero_id" class="campo no-copy-paste" value="" size="35"/>
+								</label>
+								<label>
+									Código de segurança:<br />
+									<input type="text" name="cartao_cod" rel="cartao_cod" id="cartao_cvc_id" class="campo no-copy-paste" size="5" value="" />
+									<a href="javascript:void(0)" id="link_info_cvc"><img src="img/help.png" /></a>
+								</label>
+								<label style="display:inline">
+									Validade:<br />
+									<select name="cartao_validade_mes" rel="cartao_validade" id="cartao_validade_mes_id" class="campo">
+																			<option value="01" >01</option>
+																			<option value="02" >02</option>
+																			<option value="03" >03</option>
+																			<option value="04" >04</option>
+																			<option value="05" >05</option>
+																			<option value="06" >06</option>
+																			<option value="07" >07</option>
+																			<option value="08" >08</option>
+																			<option value="09" >09</option>
+																			<option value="10" >10</option>
+																			<option value="11" >11</option>
+																			<option value="12" >12</option>
+																		</select>
+								
+								</label><label style="display:inline">/ 20<select name="cartao_validade_ano" rel="cartao_validade" id="cartao_validade_ano_id" class="campo">
+																			<option value="13" >13</option>
+																			<option value="14" >14</option>
+																			<option value="15" >15</option>
+																			<option value="16" >16</option>
+																			<option value="17" >17</option>
+																			<option value="18" >18</option>
+																			<option value="19" >19</option>
+																			<option value="20" >20</option>
+																			<option value="21" >21</option>
+																			<option value="22" >22</option>
+																			<option value="23" >23</option>
+																			<option value="24" >24</option>
+																		</select>
+								</label>
+								<label style="margin-top:5px">
+									Parcelamento:<br />
+									<select name="parcelas" class="campo" rel="cartao_nome">
+																				<option value="1">1x de R$ 69,90</option>
+																				<option value="2">2x de R$ 34,95</option>
+																				<option value="3">3x de R$ 23,30</option>
+																				<option value="4">4x de R$ 17,48</option>
+																			</select>
+								</label>
+
+															
+								<br />
+							
+								<button class="button verde modal">Concluir Pagamento &raquo;</button>
+                                <div class="site-seguro"></div>
+							</div>
+							
+						</div>
+						
+						<div id="info_cvc" class="info" style="display:none">
+							<p><strong>O que é o número de Valor de Verificação de Cartão de Crédito (CVV/CVC/CID)?</strong></p>
+							<p>O Valor de Verificação de Cartão de Crédito é uma característica de segurança presente em todos os cartões de crédito. Esse número é usado para determinar a identidade e evitar fraudes. Ele está localizado no verso do seu cartão.</p>
+							<p><strong>Onde posso encontrar o número de Valor de Verificação de Cartão de Crédito (CVV/CVC/CID)?</strong></p>
+							<p>São os 3 últimos dígitos no espaço de assinatura no verso do cartão.</p>
+							<p><img src="img/cartao_cod.jpg" /></p>
+						</div>
+		
+					</td>
+				</tr>
+			</table>
+			
+			<table class="t noborder compra compra_avista_bb" style="display:none">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Parcelamento:</strong>
+							À Vista
+							
+							<br /><br />
+							
+							<strong>Dados da Compra:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em> Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>Débito</em>
+						</div>
+						
+					</td>
+					<td style="vertical-align:top">
+						<div class="cartao">
+							<strong>Pagamento com Débito em conta Banco do Brasil</strong>
+							
+							<br />
+							
+							<p>O pagamento será realizado clicando no botão abaixo, abrirá uma nova janela com o ambiente do Banco do Brasil.</p>
+							<p>Não será necessário enviar nenhum tipo de comprovante de pagamento, pois a liberação é automatizada.</p>
+							<p>Ao final do pagamento o sistema do banco retorna uma janela de confirmação, não feche esta janela para que o seu pagamento seja confirmado.</p>
+							<p>Logo após concluir o pagamento, você terá acesso a sua Sala de Aula Virtual.</p>
+							
+							<button class="button verde modal">Concluir Matrícula &raquo;</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+	
+			<table class="t noborder compra compra_avista_itau" style="display:none">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Parcelamento:</strong>
+							À Vista
+							
+							<br /><br />
+							
+							<strong>Dados da Compra:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em> Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>Débito</em>
+						</div>
+						
+					</td>
+					<td style="vertical-align:top">
+						<div class="cartao">
+							<strong>Pagamento com Débito em conta Itaú</strong>
+							
+							<br />
+							
+							<p>O pagamento será realizado clicando no botão abaixo, abrirá uma nova janela com o ambiente do Itaú.</p>
+							<p>Não será necessário enviar nenhum tipo de comprovante de pagamento, pois a liberação é automatizada.</p>
+							<p>Ao final do pagamento o sistema do banco retorna uma janela de confirmação, não feche esta janela para que o seu pagamento seja confirmado.</p>
+							<p>Logo após concluir o pagamento, você terá acesso a sua Sala de Aula Virtual.</p>
+							
+							<button class="button verde modal">Concluir Matrícula &raquo;</button>
+                           <div class="site-seguro"></div>
+                        </div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="t noborder compra compra_avista_boleto" style="display:none">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Parcelamento:</strong>
+							À Vista
+							
+							<br /><br />
+							
+							<strong>Dados da Compra:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em> Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>Boleto</em>
+						</div>
+						
+					</td>
+					<td style="vertical-align:top">
+						<div class="cartao">
+							<strong>Pagamento com Boleto Bancário</strong>
+							
+							<br />
+							
+							<p>O pagamento pode ser feito em qualquer agência bancária, caixas eletrônico ou pela Internet.</p>
+							<p>Não será necessário nos informar sobre o pagamento, pois o banco já o faz dentro de 2 dias úteis.</p>
+							<p>Após 2 dias úteis, caso tenha efetuado o pagamento via boleto, você terá acesso a sua Sala de Aula Virtual.</p>
+	
+							<button class="button verde modal">Concluir Matrícula &raquo;</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="t noborder compra compra_avista_pagseguro" style="display:none">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Parcelamento:</strong>
+							(Escolha na próxima tela)
+							
+							<br /><br />
+							
+							<strong>Dados da Compra:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em> Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>PagSeguro</em>
+						</div>
+						
+					</td>
+					<td style="vertical-align:top">
+						<div class="cartao">
+							<strong>Pagamento com PagSeguro</strong>
+							
+							<br />
+							
+							<p>Você poderá utilizar a forma de pagamento selecionada através do ambiente PagSeguro.</p>
+							<p>Clique no botão abaixo para ser redirecionado. Em seguida escolha novamente o meio de pagamento e informe seus dados.</p>
+	
+							<button class="button verde modal">Concluir Matrícula &raquo;</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="t noborder compra compra_avista_paypal" style="display:none">
+				<tr class="formas_detalhes">
+					<td width="250" style="vertical-align:top">
+						<div class="compra_detalhes">
+							<strong>Parcelamento:</strong>
+							À Vista
+							
+							<br /><br />
+							
+							<strong>Dados da Compra:</strong>
+	
+							<span>Nome do Cliente:</span>
+							<em> Nsunda Bondo Lubaki</em>
+							<span>Data:</span>
+							<em>25/03/2014</em>
+							<span>Valor:</span>
+							<em>R$ 69,90</em>
+							<span>Forma de pagamento:</span>
+							<em>Paypal</em>
+						</div>
+						
+					</td>
+					<td style="vertical-align:top">
+						<div class="cartao">
+							<strong>Pagamento com Paypal</strong>
+							
+							<br />
+							
+							<p>O pagamento pode ser feito em qualquer agência bancária, caixas eletrônico ou pela Internet.</p>
+							<p>Não será necessário nos informar sobre o pagamento, pois o banco já o faz dentro de 2 dias úteis.</p>
+							<p>Após 2 dias úteis, caso tenha efetuado o pagamento via Paypal, você terá acesso a sua Sala de Aula Virtual.</p>
+	
+							<button class="button verde modal">Concluir Matrícula &raquo;</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+				
+	</form>
+		
+</div>
+
+<div id="footer">
+	<div class="center">
+		&copy; Copyright 2001-2014 Laboratório de Software - Todos os direitos reservados
+	</div>
+</div>
+
+
+</body>
+</html>
