@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index(request):
+  template = loader.get_template('pedidos/index.html')
+  return HttpResponse(template.render(RequestContext(request)))
