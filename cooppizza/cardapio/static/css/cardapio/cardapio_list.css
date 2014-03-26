@@ -1,0 +1,14 @@
+.above-table {
+	display: table;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.above-table .element {
+	display: table-cell;
+	vertical-align: bottom;
+}
+
+.above-table .element.title {
+	width: 100%;
+}

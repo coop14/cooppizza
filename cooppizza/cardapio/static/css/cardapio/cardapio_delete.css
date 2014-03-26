@@ -1,0 +1,34 @@
+.object-box {
+	width: 100%;
+	border-top:  1px solid #eee;
+}
+
+.object-box .field-line {
+	display: table;
+	width: 100%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	border-bottom: 1px solid #eee; 
+}
+
+.object-box .field-line .field {
+	display: table-cell;
+	width: 50%;
+}
+
+.object-box .field-line .field:first-child {
+	padding-right: 10px;
+}
+
+.object-box .field-line .field:last-child {
+	padding-left:10px;
+}
+
+.object-box .field-line .field.single-child {
+	padding-left:0;
+	padding-right: 0;
+}
+
+.object-box .field-line .field .field-label {
+	font-weight: bold;
+}

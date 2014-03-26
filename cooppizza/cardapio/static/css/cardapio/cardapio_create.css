@@ -1,0 +1,59 @@
+.form-line {
+	display: table;
+	width: 100%;
+	padding-bottom: 10px;
+}
+
+.form-line .form-element {
+	display: table-cell;
+	width: 50%;
+}
+
+.form-line .form-element .form-input {
+	width: 100%;
+	height:	30px;
+}
+
+.form-line .form-element .form-textarea {
+	width: 100%;
+	height:	100px;
+}
+
+.form-line .form-element:first-child{
+	padding-right: 10px;
+}
+
+.form-line .form-element:last-child{
+	padding-left: 10px;
+}
+
+.form-line .form-element.single-child{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.form-line .form-element .form-label{
+	font-weight:	bold;
+}
+
+.form-btn-holder {
+	text-align: center;
+}
+
+.form-btn-holder .form-btn{
+	width: 200px;
+}
+
+.form-line .form-element ul.form-errors {
+	list-style: none;
+	padding-left: 0;
+}
+
+.form-line .form-element ul.form-errors li {
+	color: red;
+	font-weight: bold;
+}
+
+.form-line.error-line{
+	padding-bottom: 0;
+}
