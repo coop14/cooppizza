@@ -1,8 +1,20 @@
-<html>
-	<head>
-		<title>Nova Pizza</title>
-	</head>
-	<body>
+{% extends "indexCardapio.html" %}
+
+		{% load staticfiles %}
+
+		{% block stylesheets %}
+			{{ block.super }}
+
+			<link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+		{% endblock %}
+
+		{% block title %}
+				CooPizza - Nova Pizza
+		{% endblock %}
+
+		{% block content %}
+
 		<h1>Pizza</h1>
 		<div class="form">
 			<form method="post" action="cadastrar">
@@ -10,7 +22,7 @@
 				<ul>
 					<li>
 						<label>Nome:</label>
-						<input type="text" name="name" value="" /> 
+						<input type="text" name="nome" value="" /> 
 						<label>Tipo de Pizza:</label>
 						<select name="tipoDePizza"/>
 						<option value="normal">normal</option>
@@ -23,5 +35,4 @@
 					</li>
 				</ul>
 		</div>
-	</body>
-</html>
+		{% endblock %}

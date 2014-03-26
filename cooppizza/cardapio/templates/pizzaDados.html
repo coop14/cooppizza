@@ -1,0 +1,43 @@
+{% extends "indexCardapio.html" %}
+
+    {% load staticfiles %}
+
+    {% block stylesheets %}
+      {{ block.super }}
+
+      <link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block title %}
+        CooPizza - Pizza {{pizza.produto.nome}}
+    {% endblock %}
+
+    {% block content %}
+<h1>Pizza {{ pizza.produto.nome }}
+    <a type="button" class="btn btn-small btn-danger" href="/cardapio/pizza/{{pizza.id}}/deletar">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a></h1>
+    <h4>Preço:</h4> R$ {{pizza.produto.preco}} 
+        <a type="button" class="btn btn-small btn-primary" href="/cardapio/pizza/{{pizza.id}}/alterar">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+    <h1> Composição da Pizza - Recheios </h1>
+    <ul>
+{% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
+      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} kg
+        <a type="button" class="btn btn-small btn-danger" href="/cardapio/pizza/{{pizza.id}}/{{pizzaingrediente.id}}/deletarIngrediente">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+{% endfor %}
+    </ul>
+    <a type="button" href="/cardapio/pizza/{{pizza.id}}/ingredienteDaPizza" class="btn btn-small btn-success btn-add">
+                Adicionar ingrediente à pizza
+            </a>
+    <br>
+    <br>
+    <a type="button" href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" class="btn btn-small btn-success btn-add">
+                Auxílio para conversão de medidas
+            </a>
+    {% endblock %}
+

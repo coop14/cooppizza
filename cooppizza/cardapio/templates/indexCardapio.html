@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+
+
+{% block navbar_links %}
+<li class="active"><a href="#">Principal</a></li>
+<li><a href="#">Pedido</a></li>
+<li><a href="#">BI</a></li>
+<li><a href="#">Marketing/Feedback</a></li>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+      	{% block sidebar_links %}
+	        <li><a href="pizza">Pizza</a></li>
+	        <li><a href="bebida">Bebida</a></li>
+	        <li><a href="ingrediente">Ingrediente</a></li>
+        {% endblock %}
+      </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% comment %}<h1 class="page-header">Bem Vindo</h1>{% endcomment %}
+<div class="jumbotron">
+	<h1 class="text-center">CooPizza</h1>
+	<p class="lead text-justify"> Melhor ERP para pizzarias.</p>
+</div>
+{% endblock %}
