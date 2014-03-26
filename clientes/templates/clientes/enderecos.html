@@ -10,7 +10,7 @@
     <h4>Endereços associados:</h4>
     <ul>
 {% for endereco in cliente.endereco_set.all %}
-      <li>{{ endereco.logradouro }}, {{ endereco.numero }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} [<a href="{% url 'enderecoDeletar' cliente.id endereco.id %}">deletar</a>]</li>
+      <li>{{ endereco.logradouro }}, {{ endereco.numero }} {{ endereco.complemento }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} [<a href="{% url 'enderecoDeletar' cliente.id endereco.id %}">deletar</a>]</li>
 {% endfor %}
     </ul>
     <a href="{% url 'enderecoNovo' cliente.id %}">Novo endereço</a>
