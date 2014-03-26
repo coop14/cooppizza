@@ -1,9 +1,8 @@
 from django.conf.urls import patterns, include, url
-from cardapio import views
+from cooppizza.cardapio import views
 
 urlpatterns = patterns('',
 	url(r'^$', views.index, name='index'),
-	url(r'^base$', views.base, name='base'),
 	url(r'^pizza$', views.pizza, name='pizza'),
 	url(r'^bebida$', views.bebida, name='bebida'),
 	url(r'^ingrediente$', views.ingrediente, name='ingrediente'),

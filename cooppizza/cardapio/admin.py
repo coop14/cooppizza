@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cardapio.models import Produto, Pizza, Ingrediente, Bebida, PizzaIngrediente
+from cooppizza.cardapio.models import Produto, Pizza, Ingrediente, Bebida, PizzaIngrediente
 
 # Register your models here.
 
