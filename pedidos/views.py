@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 def web(request):
-  template = loader.get_template('clientes/indexWeb.html')
+  template = loader.get_template('pedidos/indexWeb.html')
   return HttpResponse(template.render(RequestContext(request)))
 
 def index(request):

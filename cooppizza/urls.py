@@ -5,6 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
   url(r'^admin/', include(admin.site.urls)),
-  url(r'^clientes/', include('clientes.urls')),
   url(r'^cardapio/', include('cardapio.urls')),
+  url(r'^clientes/', include('clientes.urls')),
+  url(r'^pedidos/', include('pedidos.urls')),
 )
