@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Promoção</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+$(function() {
+  $('.numeric').keyup(function () {
+    if (this.value != this.value.replace(/[^0-9\.]/g, ''))
+      this.value = this.value.replace(/[^0-9\.]/g, '');
+  });
+});
+
+function showbox() {
+	var r = document.forms[0].base;
+	if (r[0].checked) {
+		document.getElementById("showProduto").style.display="inline";
+		document.getElementById("showIngrediente").style.display="none";
+	}
+	else if (r[1].checked) {
+		document.getElementById("showIngrediente").style.display="inline";
+		document.getElementById("showProduto").style.display="none";
+	}
+}
+    </script>
+  </head>
+  <body>
+    <h1>Promoção</h1>
+    <div class="form">
+      <h4>Informações da promoção:</h4>
+      <form method="post" action="adicionar">
+        {% csrf_token %}
+        <ul>
+          <li>
+            <label>Nome:</label>
+            <input type="text" name="nome" value="" />
+          </li>
+          <li>
+            <label>Data de início:</label>
+            <input type="date" name="dataInicio" value="" />
+          </li>
+          <li>
+			<label>Data de término:</label>
+            <input type="date" name="dataTermino" value="" />
+          </li>
+          <li>
+			<label>Valor do Desconto:</label>
+            <input type="text" name="desconto" value="0" />
+          </li>
+          <li>
+			  <form>
+			  Produto<INPUT TYPE="radio" NAME="base" onclick="showbox();">    
+			  Ingrediente<INPUT TYPE="radio" NAME="base" onclick="showbox();"> 
+			  <br>
+			  <span id="showProduto" style="display:none">
+				<label>Produto:</label>
+				<SELECT name="nome"> 
+				{% if latest_produto_list %}
+				<ul>
+				<OPTION value=0>Escolha um produto
+				{% for produto in latest_produto_list %}
+					<OPTION value={{produto.id}}>{{ produto.name }}
+				{% endfor %}
+				</ul>
+				{% else %}
+					<OPTION value=0>Não existem produtos 
+				{% endif %}
+				</SELECT>
+				<label>Quantidade:</label>
+				<input type="number" name="quantidade" value="" class="numeric"/>
+			  </span>
+			  <span id="showIngrediente" style="display:none">
+				<label>Ingrediente:</label>
+				<SELECT name="nome"> 
+				{% if latest_ingrediente_list %}
+				<ul>
+				<OPTION value=0>Escolha um ingrediente 
+				{% for ingrediente in latest_ingrediente_list %}
+					<OPTION value={{ingrediente.id}}>{{ ingrediente.name }}
+				{% endfor %}
+				</ul>
+				{% else %}
+					<OPTION value=0>Não existem ingredientes 
+				{% endif %}
+				</SELECT> 
+			  </span>
+			  </form>
+		  </li>
+		  <li>
+		  <label>Produto brinde:</label>
+				<SELECT name="nome"> 
+				{% if latest_produto_list %}
+				<ul>
+				<OPTION value=0>Escolha um produto
+				{% for produto in latest_produto_list %}
+					<OPTION value={{produto.id}}>{{ produto.name }}
+				{% endfor %}
+				</ul>
+				{% else %}
+					<OPTION value=0>Não existem produtos 
+				{% endif %}
+				</SELECT>
+			</li>
+        </ul>
+        <input type="submit" value="Criar"/>
+      </form>
+    </div>
+	<br>
+    <a href="{% url 'index' %}">Voltar</a>
+  </body>
+</html>
+
