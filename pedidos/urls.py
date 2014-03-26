@@ -1,0 +1,1 @@
+url(r'^pedidos/pagamento$', views.pagar, name='pagamento'),
