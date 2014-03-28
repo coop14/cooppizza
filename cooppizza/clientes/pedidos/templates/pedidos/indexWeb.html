@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COOP PIZZA</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    </script>
+  </head>
+  <body>
+    <div class="form">
+      <form method="post" action="acesso">
+        {% csrf_token %}
+        <ul>
+          <li>
+            <label for="email">e-mail</label>
+            <input type="text" id="email" name="email" size="40" maxlength="40" />
+          </li>
+          <li>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" size="29" maxlength="29" />
+          </li>
+        </ul>
+        <input type="submit" value="Entrar"/>
+      </form>
+    </div>
+  </body>
+</html>

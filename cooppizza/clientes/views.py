@@ -101,7 +101,7 @@ def enderecoAdicionar(request, cliente_id):
   if request.method == 'POST':
     try:
       cliente = Cliente.objects.get(pk=cliente_id)
-      endereco = cliente.endereco_set.create(cep=request.POST['cep'], logradouro=request.POST['logradouro'], numero=request.POST['numero'], bairro=request.POST['bairro'], cidade=request.POST['cidade'], estado=request.POST['estado'])
+      endereco = cliente.endereco_set.create(cep=request.POST['cep'], logradouro=request.POST['logradouro'], numero=request.POST['numero'], complemento=request.POST['complemento'], bairro=request.POST['bairro'], cidade=request.POST['cidade'], estado=request.POST['estado'])
     except (Cliente.DoesNotExist):
       raise Http404
     else:
