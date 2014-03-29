@@ -16,23 +16,37 @@
 		{% block content %}
 
 		<h1>Pizza</h1>
+		<br>
 		<div class="form">
-			<form method="post" action="cadastrar">
+			<form method="post" action="{% url 'pizzaCadastrar' %}">
 				{% csrf_token%}
 				<ul>
 					<li>
 						<label>Nome:</label>
 						<input type="text" name="nome" value="" /> 
+					</li>
+					<li>
 						<label>Tipo de Pizza:</label>
 						<select name="tipoDePizza"/>
 						<option value="normal">normal</option>
 						<option value="especial">especial</option>
 						<option value="doce">doce</option>
 						</select>
+					</li>
+					<li>
+						<label>Tamanho da Pizza:</label>
+						<select name="tamanho"/>
+						<option value="G">Grande</option>
+						<option value="M">Média</option>
+						<option value="P">Pequena</option>
+					</select>
+					</li>
+					<li>
 						<label>Preço:</label>
 						<input type="number" name="preco" step="0.01" min ="0" value="0" /> 
-						<input type="submit" value="Cadastrar"/>
 					</li>
+					<br>
+						<input type="submit" value="Cadastrar"/>
 				</ul>
 		</div>
 		{% endblock %}

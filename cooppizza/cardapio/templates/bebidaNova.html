@@ -1,21 +1,36 @@
-<html>
-	<head>
-		<title>Nova Bebida</title>
-	</head>
-	<body>
+{% extends "indexCardapio.html" %}
+
+		{% load staticfiles %}
+
+		{% block stylesheets %}
+			{{ block.super }}
+
+			<link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+		{% endblock %}
+
+		{% block title %}
+				CooPizza - Nova Bebida
+		{% endblock %}
+
+		{% block content %}
+
 		<h1>Bebida</h1>
+		<br>
 		<div class="form">
-			<form method="post" action="cadastrar">
+			<form method="post" action="{% url 'bebidaCadastrar' %}">
 				{% csrf_token%}
 				<ul>
 					<li>
 						<label>Nome:</label>
-						<input type="text" name="name" value="" /> 
-						<label>Preço:</label>
-						<input type="number" name="preco" step="0.01" min ="0" value="0" /> 
-						<input type="submit" value="Cadastrar"/>
+						<input type="text" name="nome" value="" /> 
 					</li>
+					<li>
+						<label>Preço:</label>
+						<input type="number" name="preco" step="0.01" min ="0" value="" /> 
+					</li>
+					<br>
+						<input type="submit" value="Cadastrar"/>
 				</ul>
 		</div>
-	</body>
-</html>
+		{% endblock %}

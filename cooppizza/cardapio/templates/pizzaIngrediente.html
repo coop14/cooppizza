@@ -1,18 +1,35 @@
-<html>
-  <head>
-    <title>Pizza {{pizza.produto.name}}</title>
-  </head>
-  <body>
-    <h1>Pizza #{{ pizza.id }} #{{ pizza.tipoDePizza }}</h1>
-    <h3> <a href="/cardapio/pizza/{{pizza.id}}/deletar">Deletar Pizza</a></h3>
-    <h3>{{ pizza.produto.name }}</h3>
+{% extends "indexCardapio.html" %}
+
+    {% load staticfiles %}
+
+    {% block stylesheets %}
+      {{ block.super }}
+
+      <link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block title %}
+        CooPizza - Pizza {{pizza.produto.nome}}
+    {% endblock %}
+
+    {% block content %}
+<h1>Pizza {{ pizza.produto.nome }}
+    <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletar' pizza.id %}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a></h1>
+    <h4>Tamanho {{pizza.tamanho}} </h4> 
     <h4>Preço:</h4> R$ {{pizza.produto.preco}} 
-    <br>
-    <h1> Composição da Pizza -- Recheios </h1>
+        <a type="button" class="btn btn-small btn-primary" href="{% url 'pizzaAltera' pizza.id %}">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+    <h1> Composição da Pizza - Recheios </h1>
     <ul>
 {% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
-      <li> {{ pizzaingrediente.ingrediente }} -- {{ pizzaingrediente.quantidadeDeUso }} kg
-      <a href="/cardapio/pizza/{{pizza.id}}/{{pizzaingrediente.id}}/deletarIngrediente">Deletar Ingrediente</a>
+      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} -- {{ pizzaingrediente.medida }} -- {{ pizzaingrediente.isRecheio }}
+        <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletarIngrediente' pizza.id pizzaingrediente.id %}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
 {% endfor %}
     </ul>
     <div class="form">
@@ -21,17 +38,35 @@
         <ul>
           <li>
             <label>Ingrediente:</label>
-            <select name="name">
+            <select name="nome">
                 {% for ingrediente in ingredientes %}
-                  <option value="{{ ingrediente.name }}">{{ ingrediente.name }}</option>  
+                  <option value="{{ ingrediente.nome }}">{{ ingrediente.nome }}</option>  
                 {% endfor %}
             </select>
-            <label>Quantidade de uso padrão(kg):</label>
-            <input type="number" name="quantidadeDeUso" step="0.001" min ="0"/>
-            <input type="submit" value="Adicionar"/>
           </li>
+          <li>
+            <label>Quantidade de uso padrão:</label>
+            <input type="number" name="quantidadeDeUso" step="0.001" min ="0"/>
+          </li>
+          <li>
+            <label>Tipo de medida:</label>
+            <select name="medida"/>
+            <option value="KG">KiloGrama</option>
+            <option value="PT">Pitada</option>
+            <option value="XC">Xicara</option>
+            <option value="CL">Colher</option>
+          </select>
+          </li>
+          <li>
+            <label>É recheio?</label>
+            <input type="checkbox" name="isRecheio"/>
+          </li>
+            <input type="submit" value="Adicionar"/>
         </ul>
     </div> 
-    <a href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" target="new">Auxílio para conversão de medidas</a>
-  </body>
-</html>
+    <br>
+    <br>
+    <a type="button" href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" class="btn btn-small btn-success btn-add" target="_blank">
+                Auxílio para conversão de medidas
+            </a>
+    {% endblock %}

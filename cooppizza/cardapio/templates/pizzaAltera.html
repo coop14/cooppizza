@@ -15,16 +15,16 @@
 
     {% block content %}
 <h1>Pizza {{ pizza.produto.nome }}
-    <a type="button" class="btn btn-small btn-danger" href="/cardapio/pizza/{{pizza.id}}/deletar">
+    <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletar' pizza.id %}">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a></h1>
+    <h4>Tamanho {{pizza.tamanho}} </h4> 
     <h4>Preço:</h4> 
     <div class="form">
-      <form method="post" action="editar">
+      <form method="post" action="{% url 'pizzaEdita' pizza.id %}">
         {% csrf_token%}
         <ul>
           <li>
-            <label>Preço:</label>
             <input type="number" name="preco" step="0.01" min ="0"/>
             <input type="submit" value="Alterar"/>
           </li>
@@ -33,18 +33,18 @@
     <h1> Composição da Pizza - Recheios </h1>
     <ul>
 {% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
-      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} kg
-        <a type="button" class="btn btn-small btn-danger" href="/cardapio/pizza/{{pizza.id}}/{{pizzaingrediente.id}}/deletarIngrediente">
+      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} -- {{ pizzaingrediente.medida }} -- {{ pizzaingrediente.isRecheio }}
+        <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletarIngrediente' pizza.id pizzaingrediente.id %}">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
 {% endfor %}
     </ul>
-    <a type="button" href="/cardapio/pizza/{{pizza.id}}/ingredienteDaPizza" class="btn btn-small btn-success btn-add">
+    <a type="button" href="{% url 'pizzaIngrediente' pizza.id %}" class="btn btn-small btn-success btn-add">
                 Adicionar ingrediente à pizza
             </a>
     <br>
     <br>
-    <a type="button" href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" class="btn btn-small btn-success btn-add">
+    <a type="button" href="http://gnt.globo.com/receitas/Conversor-de-medidas-para-receitas.shtml" class="btn btn-small btn-success btn-add" target="_blank">
                 Auxílio para conversão de medidas
             </a>
     {% endblock %}

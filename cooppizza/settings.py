@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'cooppizza.clientes',
     'cooppizza.cardapio',
+    'cooppizza.pedidos',
+    'cooppizza.formFeedback',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -3,31 +3,32 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, Http404
 from django.core.exceptions import PermissionDenied
 
-from formFeedback.forms import FeedbackForm
-
 # Create your views here.
 
-def base(request):
-    template = loader.get_template('formFeedback/base.html')
+def index(request):
+    template = loader.get_template('indexFeedback.html')
     return HttpResponse(template.render(RequestContext(request)))
 
 def formularioFeedback(request):
-    if request.method == 'POST': # If the form has been submitted...
-        form = ContactForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            return HttpResponseRedirect('/thanks/') # Redirect after POST
-    else:
-        form = ContactForm() # An unbound form
-
-    return render(request, 'formFeedback/feedback.html', {
-        'form': form,
+    errors = []
+    if request.method == 'POST':
+        if not request.POST.get('subject', ''):
+            errors.append('Enter a subject.')
+        if not request.POST.get('message', ''):
+            errors.append('Enter a message.')
+        if request.POST.get('email') and '@' not in request.POST['email']:
+            errors.append('Enter a valid e-mail address.')
+        if not errors:
+            """send_mail(
+                request.POST['subject'],
+                request.POST['message'],
+                request.POST.get('email', 'noreply@example.com'),
+                ['siteowner@example.com'],
+            )"""
+            return redirect(reverse('index'))
+    return render(request, 'contactUs.html', {
+        'errors': errors,
+        'subject': request.POST.get('subject', ''),
+        'message': request.POST.get('message', ''),
+        'email': request.POST.get('email', ''),
     })
-
-# OK ver como colocar campos com ingredientes disponiveis quando for adicionar ingrediente à pizza #
-# colocar com tela bonitinha #
-# OK definir tipos de pizza como doce, normal ou especial #
-# verificar delete de bebida #
-# OK ver coisa do unique (para nao poder cadastrar pizzas e ingredientes com mesmo nome) #
-# NOT fazer pagina ilustrativa com listagem de pizzas e ingredientes #

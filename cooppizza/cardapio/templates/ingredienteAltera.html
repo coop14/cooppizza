@@ -1,21 +1,24 @@
-<html>
-  <head>
-    <title>Ingrediente {{ingrediente.name}}</title>
-  </head>
-  <body>
-    <h1>Ingrediente #{{ ingrediente.id }}</h1>
-    <h3>{{ ingrediente.name }}</h3>
-    <h4>Quantidade no Estoque:</h4> 
-    <div class="form">
-      <form method="post" action="editar">
-        {% csrf_token%}
-        <ul>
-          <li>
-            <label>Quantidade(kg):</label>
-            <input type="number" name="quantidadeEstoque" step="0.001" min ="0"/>
-            <input type="submit" value="Alterar"/>
-          </li>
-        </ul>
-    </div> 
-  </body>
-</html>
+{% extends "indexCardapio.html" %}
+
+    {% load staticfiles %}
+
+    {% block stylesheets %}
+      {{ block.super }}
+
+      <link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block title %}
+        CooPizza - Ingrediente {{pizza.nome}}
+    {% endblock %}
+
+    {% block content %}
+<h1>Ingrediente {{ ingrediente.nome }}
+    <a type="button" class="btn btn-small btn-danger" href="{% url 'ingredienteDeletar' ingrediente.id %}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a></h1>
+    <h4>Marca: {{ingrediente.marca}} </h4> 
+    <h4>Descrição:</h4> R$ {{ingrediente.descricao}} 
+    {% endblock %}
+

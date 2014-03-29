@@ -1,8 +1,7 @@
 from django.conf.urls import patterns, include, url
-from formFeedback import views
-from django.contrib import admin
+from cooppizza.formFeedback import views
 
 urlpatterns = patterns('',
-	url(r'^$', views.formularioFeedback, name='formularioFeedback'),
-	url(r'^base$', views.base, name='base'),
+	url(r'^$', views.index, name='index'),
+	url(r'^form$', views.formularioFeedback, name='formularioFeedback'),
 )

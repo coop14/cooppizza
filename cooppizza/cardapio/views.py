@@ -26,7 +26,7 @@ def ingredienteNovo(request):
 
 def ingredienteCadastrar(request):
 	if request.method == "POST":
-		ingrediente = Ingrediente(nome=request.POST['nome'], quantidadeEstoque=request.POST['quantidadeEstoque'], isRecheio=True)
+		ingrediente = Ingrediente(nome=request.POST['nome'], marca=request.POST['marca'], descricao=request.POST['descricao'])
 		ingrediente.save()
 		return redirect(reverse('ingredienteDados', args=[ingrediente.id]))
 	else:
@@ -91,7 +91,7 @@ def pizzaCadastrar(request):
 	if request.method == "POST":
 		produto = Produto(nome=request.POST['nome'], preco=request.POST['preco'], isPizza=True)
 		produto.save()
-		pizza = Pizza(produto=produto, tipoDePizza = request.POST['tipoDePizza'])
+		pizza = Pizza(produto=produto, tipoDePizza = request.POST['tipoDePizza'], tamanho=request.POST['tamanho'])
 		pizza.save()
 		return redirect(reverse('pizzaDados', args=[pizza.id]))
 	else:
@@ -177,7 +177,7 @@ def pizzaIngredienteAdiciona(request, pizza_id):
 		try:
 			ingrediente = Ingrediente.objects.get(nome=request.POST['nome'])
 			pizza = Pizza.objects.get(pk=pizza_id)
-			pizzaIngrediente = PizzaIngrediente(quantidadeDeUso=request.POST['quantidadeDeUso'], pizza=pizza, ingrediente=ingrediente) 
+			pizzaIngrediente = PizzaIngrediente(quantidadeDeUso=request.POST['quantidadeDeUso'], pizza=pizza, ingrediente=ingrediente, medida=request.POST['medida']) 
 			pizzaIngrediente.save()
 		except (Ingrediente.DoesNotExist):
 			raise Http404
@@ -191,7 +191,7 @@ def bebidaNova(request):
 
 def bebidaCadastrar(request):
 	if request.method == "POST":
-		produto = Produto(nome=request.POST['nome'], preco=request.POST['preco'], desconto=0, promocao=0)
+		produto = Produto(nome=request.POST['nome'], preco=request.POST['preco'], isPizza=False)
 		produto.save()
 		bebida = Bebida(produto=produto)
 		bebida.save()
@@ -257,5 +257,6 @@ def bebidaDeletar(request, bebida_id):
 def listaProduto(request):
 	produtos = Produto.objects.all().order_by('-preco')
 	return render(request, 'listaProduto.html', {'produtos':produtos})
+
 
 

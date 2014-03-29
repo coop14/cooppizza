@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.template import RequestContext, loader
 
-from clientes.models import Cliente, Endereco
+from cooppizza.clientes.models import Cliente, Endereco
 
 def web(request):
   template = loader.get_template('clientes/indexWeb.html')

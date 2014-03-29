@@ -31,7 +31,7 @@ class Pizza(models.Model):
         (MEDIA, 'Media'),
         (PEQUENA, 'Pequena'),
     )
-    tamanho = models.CharField(max_length=1, choices=TAMANHO_CHOICES, blank=True, null=True)
+    tamanho = models.CharField(max_length=1, choices=TAMANHO_CHOICES)
     tipoDePizza = models.CharField(max_length=200)
     ingredientes = models.ManyToManyField(Ingrediente, through='PizzaIngrediente')
 

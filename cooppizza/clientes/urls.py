@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from clientes import views
+from cooppizza.clientes import views
 
 urlpatterns = patterns('',
   url(r'^$', views.index, name='index'),
