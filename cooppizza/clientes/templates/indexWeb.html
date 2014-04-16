@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>COOP PIZZA</title>
+{% extends "indexClientes.html" %}
+{% load staticfiles %}
+
+    {% block title %}
+    COOP PIZZA
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
     </script>
-  </head>
-  <body>
-    <h1>Área do Cliente</h1>
+    {% endblock %}
+
+    {% block content %}
+
     <div class="form">
-      <h4>Acesso Restrito</h4>
+      <h1>Sou Cadastrado</h1>
       <form method="post" action="acesso">
         {% csrf_token %}
         <ul>
           <li>
-            <label for="email">e-mail</label>
+            <label for="email">E-mail</label>
             <input type="text" id="email" name="email" size="40" maxlength="40" />
           </li>
           <li>
@@ -22,8 +24,15 @@
             <input type="password" id="senha" name="senha" size="29" maxlength="29" />
           </li>
         </ul>
-        <input type="submit" value="Entrar"/>
+        <input type="submit" class="btn btn-small btn-success" value="Entrar"/>
       </form>
     </div>
-  </body>
-</html>
+
+    <br>
+    <br>
+
+    <h3>Não sou cadastrado</h3>
+    <a type="button" href="{% url 'clienteNovo' %}" class="btn btn-warning">
+      Realizar Cadastro
+
+    {% endblock %}

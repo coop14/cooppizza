@@ -11,19 +11,17 @@ def indexPedido(request):
   return HttpResponse(template.render(RequestContext(request)))
 
 def pizzasPedido(request):
-	try:
-		pizzas = Pizza.objects.all()
-	except (Pizza.DoesNotExist):
-		raise Http404
-	else: 
-		return render(request, 'pizzasPedido.html', {'pizzas':pizzas})
+  pizzas = Pizza.objects.all()
+  ingredientes = Ingrediente.objects.all()
+  pizzasingredientes = PizzaIngrediente.objects.all()
+  return render(request, 'pizzasPedido.html', {'pizzas':pizzas, 'ingredientes':ingredientes, 'pizzasingredientes':pizzasingredientes})
 
 def bebidasPedido(request):
 	try:
 		bebidas = Bebida.objects.all()
 	except (Bebida.DoesNotExist):
 		raise Http404
-	else: 
+	else:
 		return render(request, 'bebidasPedido.html', {'bebidas':bebidas})
 
 def bebidaAdiciona(request, bebida_id):
@@ -40,11 +38,31 @@ def bebidaAdiciona(request, bebida_id):
 	else:
 		raise PermissionDenied
 
-def carrinhoPedido(request, produto_id):
-	try:
-		produto_id = Produto.objects.get(pk=produto_id)
-	except (Produto.DoesNotExist):
-		raise Http404
-	else: 
-		return render(request, 'carrinhoPedido.html',
-		 {'produto':produto})
+def carrinhoPedido(request):
+  itens = []
+  total = 0
+  for k in request.session.iterkeys():
+    if k.startswith('pid_'):
+      if request.session[k] > 0:
+        total += request.session[k]
+        produto = Produto.objects.get(pk=k[4:])
+        itens.append({'produto': produto, 'quantidade': request.session[k]})
+  return render(request, 'carrinhoPedido.html', {'itens': itens, 'total': total})
+
+def carrinhoPedidoAdicionar(request, produto_id):
+  try:
+    produto = Produto.objects.get(pk=produto_id)
+  except (Produto.DoesNotExist):
+    raise Http404
+  else:
+    if request.session.get('pid_%d' % produto.id, 0):
+      request.session['pid_%d' % produto.id] += 1
+    else:
+      request.session['pid_%d' % produto.id] = 1
+    
+    return redirect(pizzasPedido)
+
+def carrinhoPedidoRemover(request, produto_id):
+  if request.session.get('pid_' + produto_id, 0):
+    request.session['pid_' + produto_id] = 0
+  return redirect(carrinhoPedido)

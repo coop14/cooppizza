@@ -1,0 +1,80 @@
+{% extends "indexClientes.html" %}
+{% load staticfiles %}
+
+    {% block stylesheets %}
+      {{ block.super }}
+
+      <link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block title %}
+        CooPizza - Clientes
+          <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+          <script type="text/javascript">
+      $(function() {
+        $('.numeric').keyup(function () {
+          if (this.value != this.value.replace(/[^0-9\.]/g, ''))
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        });
+      });
+          </script>
+    {% endblock %}
+
+    {% block content %}
+
+<br>
+    
+    <h1>Novos clientes</h1>
+    <a type="button" class="btn btn-success"  href="{% url 'clienteNovo' %}">Cadastrar cliente</a>
+    <br><br>
+
+
+    <div class="form">
+      <h1>Consultar cliente</h1>
+      <form method="post" action="consulta">
+        {% csrf_token %}
+        <ul>
+          <li>
+            <label for="email">e-mail</label>
+            <input type="text" id="email" name="email" size="40" maxlength="40" />
+          </li>
+          <li>
+            <label for="email">telefone</label>
+            <input type="text" id="telefone" name="telefone" size="15" maxlength="15" class="numeric" />
+          </li>
+        </ul>
+        <input type="submit" class="btn btn-info" value="Consultar!"/>
+      </form>
+    </div>
+<br>
+
+
+
+    <table class ="table table-striped table-hover">
+        <tr>
+
+        <th style="text-align: center;">E-mail</th>
+        <th style="text-align: center;">Telefone</th>
+        <th style="text-align: center;">Modificar</th>
+      
+        </tr>
+        
+        <h1>Clientes</h1>
+
+        {% for cliente in clientes %}
+                <tr>
+                  <td style="text-align: center;" >{{ cliente.email }}</td>
+                    <td style="text-align: center;">{{ cliente.telefone }}</td>
+                  <td style="text-align: center;">
+                    <div class="element">
+                        <a type="button" class="btn btn-small btn-primary" href="{% url 'clienteDados' cliente.id %}">
+                              <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </div>
+                  </td>
+                </tr>
+          {% endfor %}
+          </table>
+
+    {% endblock %}

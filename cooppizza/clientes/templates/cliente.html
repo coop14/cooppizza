@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cliente</title>
+{% extends "indexClientes.html" %}
+{% load staticfiles %}
+
+    {% block title %}
+
+    Cliente
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
 $(function() {
@@ -11,26 +13,31 @@ $(function() {
   });
 });
     </script>
-  </head>
-  <body>
-    <a href="{% url 'index' %}">Voltar</a>
-    <h1>Cliente</h1>
+
+    {% endblock %}
+
+    {% block content %}
+
+    <h1>Digite seus dados:</h1>
     <div class="form">
-      <h4>Dados do cliente:</h4>
       <form method="post" action="adicionar">
         {% csrf_token %}
         <ul>
           <li>
-            <label>e-mail:</label>
+            <label>E-mail:</label>
             <input type="text" name="email" value="" size="40" maxlength="40" />
           </li>
           <li>
-            <label>telefone:</label>
+            <label>Telefone:</label>
             <input type="text" name="telefone" value="" size="15" maxlength="15" class="numeric" />
           </li>
+          <li>
+            <label>Senha:</label>
+            <input type="text" name="senha" value="" size="15" maxlength="15" ß/>
+          </li>
         </ul>
-        <input type="submit" value="Adicionar!"/>
+        <input type="submit" class="btn btn-small btn-success" value="Cadastrar"/>
       </form>
     </div>
-  </body>
-</html>
+
+    {% endblock %}
