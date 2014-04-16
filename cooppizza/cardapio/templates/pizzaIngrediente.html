@@ -39,7 +39,6 @@
         {% if pizzaingrediente.medida == 'CL'%}
         Colher{{ pizzaingrediente.quantidadeDeUso|pluralize }}
         {% endif %}
-        {{ pizzaingrediente.isRecheio }}
         <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletarIngrediente' pizza.id pizzaingrediente.id %}">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>

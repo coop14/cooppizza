@@ -13,13 +13,28 @@ def indexCardapio(request):
 	return HttpResponse(template.render(RequestContext(request)))
 
 def pizza(request):
-	return render(request, 'pizza.html')
+	try:
+		pizzas = Pizza.objects.all()
+	except (Pizza.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'pizza.html', {'pizzas':pizzas})	
 
 def bebida(request):
-	return render(request, 'bebida.html')
+	try:
+		bebidas = Bebida.objects.all()
+	except (Bebida.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'bebida.html', {'bebidas':bebidas})	
 
 def ingrediente(request):
-	return render(request, 'ingrediente.html')
+	try:
+		ingredientes = Ingrediente.objects.all()
+	except (Ingrediente.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'ingrediente.html', {'ingredientes':ingredientes})	
 
 def ingredienteNovo(request):
 	return render(request, 'ingredienteNovo.html')
@@ -32,16 +47,14 @@ def ingredienteCadastrar(request):
 	else:
 		raise PermissionDenied
 
-def ingredienteConsulta(request):
-	if request.method == 'POST':
-	    try:
-	      ingrediente = Ingrediente.objects.get(nome=request.POST['nome'])
-	    except (Ingrediente.DoesNotExist):
-	      raise Http404
-	    else:
-	      return redirect(reverse('ingredienteDados', args=[ingrediente.id]))
-  	else:
-  		raise PermissionDenied
+def ingredienteConsulta(request, ingrediente_id):
+	try:
+		ingrediente = Ingrediente.objects.get(pk=ingrediente_id)
+	except (Ingrediente.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'ingredienteDados.html',
+		 {'ingrediente':ingrediente})
 
 def ingredienteAltera(request, ingrediente_id):
 	try:
@@ -97,17 +110,14 @@ def pizzaCadastrar(request):
 	else:
 		raise PermissionDenied
 
-def pizzaConsulta(request):
-	if request.method == 'POST':
-	    try:
-	      produto = Produto.objects.get(nome=request.POST['nome'])
-	      pizza = Pizza.objects.get(produto=produto)
-	    except (Pizza.DoesNotExist):
-	      raise Http404
-	    else:
-	      return redirect(reverse('pizzaDados', args=[pizza.id]))
-  	else:
-  		raise PermissionDenied
+def pizzaConsulta(request, pizza_id):
+	try:
+		pizza = Pizza.objects.get(pk=pizza_id)
+	except (Pizza.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'pizzaDados.html',
+		 {'pizza':pizza})
 
 def pizzaAltera(request, pizza_id):
 	try:
@@ -202,17 +212,14 @@ def bebidaCadastrar(request):
 	else:
 		raise PermissionDenied
 
-def bebidaConsulta(request):
-	if request.method == 'POST':
-	    try:
-	      produto = Produto.objects.get(nome=request.POST['nome'])
-	      bebida = Bebida.objects.get(produto=produto)
-	    except (Bebida.DoesNotExist):
-	      raise Http404
-	    else:
-	      return redirect(reverse('bebidaDados', args=[bebida.id]))
-  	else:
-  		raise PermissionDenied
+def bebidaConsulta(request, bebida_id):
+	try:
+		bebida = Bebida.objects.get(pk=bebida_id)
+	except (Bebida.DoesNotExist):
+		raise Http404
+	else: 
+		return render(request, 'bebidaDados.html',
+		 {'bebida':bebida})
 
 def bebidaAltera(request, bebida_id):
 	try:
