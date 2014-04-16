@@ -5,66 +5,62 @@
 	{% block stylesheets %}
 		{{ block.super }}
 
-		<link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
-
 	{% endblock %}
 
 	{% block title %}
-
 		Bebidas
-
 	{% endblock %}
 
+  {% block extra_head %}
+  <script type="text/javascript" src="/static/js/pedidos.js"></script>
+	{% endblock %}
 
 	{% block content %}
 
+	<h1> Bebidas </h1>
+
 		<table class ="table table-striped table-hover">
 			<tr>
-
-				<th>Nome</th>
-				<th>Preço (P)</th>
-				<th>Observações</th>
-				<th>Quantidade</th>
-				<th>Selecionar</th>
+      
+				<th style="text-align: center;">Nome</th>
+				<th style="text-align: center;">Preço</th>
+				<th style="text-align: center;">Observações</th>
+				<th style="text-align: center;">Quantidade</th>
+				<th style="text-align: center;">Selecionar</th>
 			
 			</tr>
 
-	<h1> Bebidas </h1>
-
 	{% for bebida in bebidas %}
 
-
-	      	<tr>	        	
-	          	<div class="form">
-					<form method="post" action="{% url 'bebidaAdiciona' bebida.id %}">
-						{% csrf_token%}
+	    <tr>
 				<td>{{ bebida.produto.nome }}</td>
-	        	<td>R$ {{ bebida.produto.preco }}</td>
+	      <td>R$ {{ bebida.produto.preco }}</td>
 				<td>
-						<input type="text" name="observacao" value="" /> 
+          <input type="text" name="observacao" value="" />
 				</td>
 				<td>
-						<select name="quantidade"/>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						</select>
+          <select name="quantidade">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
 				</td>
-				<td>
-						<input class="btn btn-small btn-success" type="submit" value="Adicionar"/>
-				</td>
-				</div>
-	        </tr>
+        <td style="text-align: center;">
+          <div class="element">
+            <a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedidoAdicionar' bebida.produto.id %}">
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+            </a>
+          </div>
+        </td>
+	    </tr>
     {% endfor %}
 
+    </table>
+    
   {% endblock %}
-
-
-
-
