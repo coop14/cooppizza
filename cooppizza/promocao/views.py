@@ -27,12 +27,20 @@ def promoAdicionar(request):
 			produtoBase = request.POST['produtoBase']
 			quantiaProdutoBase = request.POST['quantiaProdutoBase']
 			ingredienteBase = request.POST['ingredienteBase']
-			if int(produtoBase) > 0:
+			diaBase = request.POST['diaBase']
+			choice = request.POST['base']
+			if int(choice) == 1:
 				ingredienteBase = 0
-			elif int(ingredienteBase) > 0:
+				diaBase = 0
+			elif int(choice) == 2:
 				produtoBase = 0
 				quantiaProdutoBase = 0
-			promocao = PromocoesDaPizzaria(nome=nome, dataInicio=dataInicio, dataTermino=dataTermino, desconto=desconto, itemExtra=itemExtra, produtoBase=produtoBase, quantiaProdutoBase=quantiaProdutoBase, ingredienteBase=ingredienteBase)
+				diaBase = 0
+			elif int(choice) == 3:
+				produtoBase = 0
+				quantiaProdutoBase = 0
+				ingredienteBase = 0
+				promocao = PromocoesDaPizzaria(nome=nome, dataInicio=dataInicio, dataTermino=dataTermino, desconto=desconto, itemExtra=itemExtra, produtoBase=produtoBase, quantiaProdutoBase=quantiaProdutoBase, ingredienteBase=ingredienteBase, diaBase=diaBase)
 			promocao.save()
 			return redirect('/promocao/%d' % promocao.id)
 	else:
@@ -56,14 +64,23 @@ def promoEditar(request, promocao_id):
 			produtoBase = request.POST['produtoBase']
 			quantiaProdutoBase = request.POST['quantiaProdutoBase']
 			ingredienteBase = request.POST['ingredienteBase']
-			if int(produtoBase) > 0:
+			diaBase = request.POST['diaBase']
+			choice = request.POST['base']
+			if int(choice) == 1:
 				promocao.produtoBase = produtoBase
 				promocao.quantiaProdutoBase = quantiaProdutoBase
 				promocao.ingredienteBase = 0
-			elif int(ingredienteBase) > 0:
+				promocao.diaBase = 0
+			elif int(choice) == 2:
 				promocao.produtoBase = 0
 				promocao.quantiaProdutoBase = 0
 				promocao.ingredienteBase = ingredienteBase
+				promocao.diaBase = 0
+			elif int(choice) == 3:
+				promocao.produtoBase = 0
+				promocao.quantiaProdutoBase = 0
+				promocao.ingredienteBase = 0
+				promocao.diaBase = diaBase
 			promocao.save()
 		except (PromocoesDaPizzaria.DoesNotExist):
 			raise Http404
@@ -107,10 +124,12 @@ def promoConsultar(request, promocao_id):
 		else:
 			stringDataTermino += '-0'+str(promocao.dataTermino.day)
 		
-		if int(promocao.produtoBase) == 0:
-			checkProduto=False
-		elif int(promocao.ingredienteBase) == 0:
-			checkProduto=True
+		if int(promocao.produtoBase) == 0 and int(promocao.ingredienteBase) == 0:
+			checkProduto=3
+		elif int(promocao.produtoBase) == 0 and int(promocao.diaBase) == 0:
+			checkProduto=2
+		elif int(promocao.produtoBase) == 0 and int(promocao.ingredienteBase) == 0:
+			checkProduto=1
 		context = {'latest_produto_list': latest_produto_list, 'latest_ingrediente_list' : latest_ingrediente_list, 'promocao': promocao, 'checkProduto': checkProduto, 'stringDataInicio': stringDataInicio, 'stringDataTermino': stringDataTermino}
 	except PromocoesDaPizzaria.DoesNotExist:
 		raise Http404

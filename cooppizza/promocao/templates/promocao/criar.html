@@ -16,10 +16,17 @@ function showbox() {
 	if (r[0].checked) {
 		document.getElementById("showProduto").style.display="inline";
 		document.getElementById("showIngrediente").style.display="none";
+		document.getElementById("showDiaSemana").style.display="none";
 	}
 	else if (r[1].checked) {
 		document.getElementById("showIngrediente").style.display="inline";
 		document.getElementById("showProduto").style.display="none";
+		document.getElementById("showDiaSemana").style.display="none";
+	}
+	else if (r[2].checked) {
+		document.getElementById("showDiaSemana").style.display="inline";
+		document.getElementById("showProduto").style.display="none";
+		document.getElementById("showIngrediente").style.display="none";
 	}
 }
     </script>
@@ -49,8 +56,9 @@ function showbox() {
           </li>
 		  <li>
 			<form>
-				Produto<INPUT TYPE="radio" NAME="base" onclick="showbox();" checked> 
-				Ingrediente<INPUT TYPE="radio" NAME="base" onclick="showbox();"> 
+				Produto<INPUT TYPE="radio" value=1 NAME="base" onclick="showbox();" checked> 
+				Ingrediente<INPUT TYPE="radio" value=2 NAME="base" onclick="showbox();"> 
+				Dia da Semana<INPUT TYPE="radio" value=3 NAME="base" onclick="showbox();"> 
 				<br>
 				<span id="showProduto" style="display:inline">
 					<label>Produto:</label>
@@ -84,6 +92,20 @@ function showbox() {
 						{% endif %}
 					</SELECT>
 				</span>
+				<span id="showDiaSemana" style="display:none">
+				<label>Dia da Semana:</label>
+				<SELECT name="diaBase">
+					<ul>
+					<OPTION value=1>Domingo</OPTION>
+					<OPTION value=2>Segunda</OPTION>
+					<OPTION value=3>Terça</OPTION>
+					<OPTION value=4>Quarta</OPTION>
+					<OPTION value=5>Quinta</OPTION>
+					<OPTION value=6>Sexta</OPTION>
+					<OPTION value=7>Sábado</OPTION>
+					</ul>
+				</SELECT>
+			</span>
 			</form>
 		  </li>
 		  <li>

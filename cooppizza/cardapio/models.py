@@ -97,6 +97,16 @@ class PromocoesDaPizzaria(models.Model):
 	produtoBase = models.IntegerField()
 	quantiaProdutoBase = models.IntegerField()
 	ingredienteBase = models.IntegerField()
+	DIAS_SEMANA = (
+		('Domingo', 1),
+		('Segunda', 2),
+		('Terca', 3),
+		('Quarta', 4),
+		('Quinta', 5),
+		('Sexta', 6),
+		('Sabado', 7),
+	)
+	diaBase = models.IntegerField(choices=DIAS_SEMANA)
 	itemExtra = models.IntegerField()
 	dataInicio = models.DateField()
 	dataTermino = models.DateField()
