@@ -1,0 +1,115 @@
+{% extends "indexPedido.html" %}
+
+	{% load staticfiles %}
+
+	{% block stylesheets %}
+		{{ block.super }}
+
+		<link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+	{% endblock %}
+
+	{% block title %}
+
+		Pizzas
+
+	{% endblock %}
+
+
+	{% block content %}
+
+		<table class ="table table-striped table-hover">
+			<tr>
+
+				<th>Nome</th>
+				<th>Preço (P)</th>
+				<th>Selecionar</th>
+			
+			</tr>
+
+	<h1> Pizzas Normais </h1>
+
+	{% for pizza in pizzas %}
+		{% if pizza.tipoDePizza == 'normal' %}
+	      	<tr>
+	        	<td>{{ pizza.produto.nome }}</td>
+	        	<td>{{ pizza.produto.preco }}</td>
+	        	<td>
+	          	<div class="element">
+			  	  <!-- add -->
+			  	  <a type="button" href="#" class="btn btn-lg btn-success btn-add">
+			  	  	Selecionar
+			  	  </a>
+			  	</div>
+	        	</td>
+	        </tr>
+	    {% endif %}
+    {% endfor %}
+
+      </table>
+    
+
+    		<table class ="table table-striped table-hover">
+			<tr>
+
+				<th>Nome</th>
+				<th>Preço</th>
+			
+			</tr>
+
+	<h1> Pizzas Especiais </h1>
+
+	{% for pizza in pizzas %}
+		{% if pizza.tipoDePizza == 'especial' %}
+	      	<tr>
+	        	<td>{{ pizza.produto.nome }}</td>
+	        	<td>{{ pizza.produto.preco }}</td>
+	        	<td>
+	          	<div class="element">
+			  	  <!-- add -->
+			  	  <a type="button" href="#" class="btn btn-lg btn-success btn-add">
+			  	  	Selecionar
+			  	  </a>
+			  	</div>
+	        	</td>
+	        </tr>
+	    {% endif %}
+    {% endfor %}
+
+      </table>
+
+      		<table class ="table table-striped table-hover">
+			<tr>
+
+				<th>Nome</th>
+				<th>Preço</th>
+			
+			</tr>
+
+	<h1> Pizzas Doce </h1>
+
+	{% for pizza in pizzas %}
+		{% if pizza.tipoDePizza == 'doce' %}
+	      	<tr>
+	        	<td>{{ pizza.produto.nome }}</td>
+	        	<td>{{ pizza.produto.preco }}</td>
+	        	<td>
+	          	<div class="element">
+			  	  <!-- add -->
+			  	  <a type="button" href="#" class="btn btn-lg btn-success btn-add">
+			  	  	Selecionar
+			  	  </a>
+			  	</div>
+	        	</td>
+	        </tr>
+	    {% endif %}
+    {% endfor %}
+
+      </table>
+
+
+  {% endblock %}
+
+
+
+

@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+
+{% block sidebar %}
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+      	{% block sidebar_links %}
+	        <li><a href="{% url 'pizzasPedido' %}">Pizzas</a></li>
+	        <li><a href="{% url 'bebidasPedido' %}">Bebidas</a></li>
+          <li><a href="#">Carrinho</a></li>
+        {% endblock %}
+      </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% comment %}<h1 class="page-header">Bem Vindo</h1>{% endcomment %}
+<div class="jumbotron">
+	<h1 class="text-center">Pedido</h1>
+	<p class="lead text-justify"> Faça seu pedido </p>
+</div>
+{% endblock %}
