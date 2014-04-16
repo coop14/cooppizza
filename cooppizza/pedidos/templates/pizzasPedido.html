@@ -5,7 +5,7 @@
 	{% block stylesheets %}
 		{{ block.super }}
 
-		<link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+		<link href="{% static 'css/pedidos.css' %}" rel="stylesheet" />
 
 	{% endblock %}
 
@@ -15,9 +15,20 @@
 
 	{% endblock %}
 
+  {% block extra_head %}
+  
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="{% static 'js/pedidos.js' %}"></script>
 
+  {% endblock %}
+  
 	{% block content %}
 
+      
+    <div id="dialog_pizza" class="black_overlay white_content" style="display: none;">
+      <p>Pizza:</p>
+    </div>
+    
 		<table class ="table table-striped table-hover">
 			<tr>
 
@@ -37,7 +48,7 @@
 	        	<td>
 	          	<div class="element">
 			  	  <!-- add -->
-			  	  <a type="button" href="{% url 'carrinhoPedido' pizza.produto.id %}" class="btn btn-lg btn-success btn-add">
+			  	  <a type="button" class="btn btn-lg btn-success btn-add" id="popmeup">
 			  	  	Selecionar
 			  	  </a>
 			  	</div>
