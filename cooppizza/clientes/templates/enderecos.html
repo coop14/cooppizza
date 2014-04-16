@@ -1,18 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cliente - Endereços</title>
-  </head>
-  <body>
-    <a href="{% url 'index' %}">Voltar</a>
-    <h1>Cliente #{{ cliente.id }}</h1>
+{% extends "indexClientes.html" %}
+{% load staticfiles %}
+
+    {% block title %}
+
+    Cliente - Endereços
+    {% endblock %}
+
+
+  {% block content %}
+
+    <h1>Olá Cliente </h1>
+
     <h3>{{ cliente.email }}</h3>
+    <br>
     <h4>Endereços associados:</h4>
     <ul>
 {% for endereco in cliente.endereco_set.all %}
-      <li>{{ endereco.logradouro }}, {{ endereco.numero }} {{ endereco.complemento }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} [<a href="{% url 'enderecoDeletar' cliente.id endereco.id %}">deletar</a>]</li>
+      <li>{{ endereco.logradouro }}, {{ endereco.numero }} {{ endereco.complemento }}, bairro {{ endereco.bairro }} ({{ endereco.cidade }} - {{ endereco.estado }}) - CEP: {{ endereco.cep }} 
+        <a type="button" class="btn btn-danger btn-small" href="{% url 'enderecoDeletar' cliente.id endereco.id %}">
+        <span class="glyphicon glyphicon-remove"></span>
+        </a>
+      </li>
 {% endfor %}
     </ul>
-    <a href="{% url 'enderecoNovo' cliente.id %}">Novo endereço</a>
-  </body>
-</html>
+    <a type="button" class="btn btn-warning" href="{% url 'enderecoNovo' cliente.id %}">Adicionar endereço</a>
+<br><br>
+    <h4>Deseja remover o cadastro? </h4> 
+    <a type="button" class="btn btn-danger btn-small" href="{% url 'clienteDeletar' cliente.id %}">
+        Remover Cadastro</span>
+  
+  {% endblock%}

@@ -22,13 +22,37 @@
 		    	<span class="glyphicon glyphicon-plus"></span>
 		    </a>
 		  </div>
-		<h1>Consultar Pizza</h1>
-		<div class="form">
-      		<form method="post" action="{% url 'pizzaConsulta' %}">
-        		{% csrf_token %}
-        		<label for="name">nome</label>
-        		<input type="text" id="nome" name="nome" size="100" />
-        		<input type="submit" value="Consultar"/>
-      		</form>
-    		</div>
+
+
+		    	<table class ="table table-striped table-hover">
+				<tr>
+
+				<th style="text-align: center;">Nome</th>
+				<th style="text-align: center;">Tipo</th>
+				<th style="text-align: center;">Tamanho</th>
+				<th style="text-align: center;">Preço</th>
+				<th style="text-align: center;">Modificar</th>
+			
+				</tr>
+
+				<h1> Pizzas </h1>
+
+				{% for pizza in pizzas %}
+				      	<tr>
+				        	<td style="text-align: center;" >{{ pizza.produto.nome }}</td>
+			            	<td style="text-align: center;">{{ pizza.tipoDePizza }}</td>
+			            	<td style="text-align: center;">{{ pizza.tamanho }}</td>
+			            	<td style="text-align: center;">{{ pizza.produto.preco }}</td>
+				        	<td style="text-align: center;">
+				          	<div class="element">
+				                <a type="button" class="btn btn-small btn-primary" href="{% url 'pizzaConsulta' pizza.id %}">
+				                      <span class="glyphicon glyphicon-pencil"></span>
+				                </a>
+			            	</div>
+				        	</td>
+				        </tr>
+			    {% endfor %}
+			    </table>
+
+
 		{% endblock %}

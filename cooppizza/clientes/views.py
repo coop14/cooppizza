@@ -1,7 +1,9 @@
-from django.core.exceptions import PermissionDenied
-from django.http import Http404, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from django.template import RequestContext, loader
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, Http404
+from django.core.exceptions import PermissionDenied
+
 
 from cooppizza.clientes.models import Cliente, Endereco
 
@@ -27,9 +29,13 @@ def webAcesso(request):
   else:
     raise PermissionDenied
 
-def index(request):
-  template = loader.get_template('indexc.html')
-  return HttpResponse(template.render(RequestContext(request)))
+def cadastroClientes(request):
+  try:
+    clientes = Cliente.objects.all()
+  except (Cliente.DoesNotExist):
+    raise Http404
+  else: 
+    return render(request, 'cadastroClientes.html', {'clientes':clientes}) 
 
 def clienteNovo(request):
   return render(request, 'cliente.html')
@@ -40,7 +46,7 @@ def clienteAdicionar(request):
       cliente = Cliente.objects.get(email=request.POST['email'])
       raise PermissionDenied
     except (Cliente.DoesNotExist):
-      cliente = Cliente(email=request.POST['email'], telefone=request.POST['telefone'], senha="123")
+      cliente = Cliente(email=request.POST['email'], telefone=request.POST['telefone'], senha=request.POST['senha'])
       cliente.save()
       return redirect('/clientes/%d' % cliente.id)
   else:
@@ -79,6 +85,15 @@ def clienteLista(request):
     'clientes': clientes
     }
   )
+
+def clienteDeletar(request, cliente_id):
+  try:
+    cliente = Cliente.objects.get(pk=cliente_id)
+  except (Cliente.DoesNotExist):
+    raise Http404
+  else:
+    cliente.delete()
+    return redirect(reverse('cadastroClientes'))
 
 def enderecoNovo(request, cliente_id):
   try:
