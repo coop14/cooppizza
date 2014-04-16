@@ -91,13 +91,16 @@ class Item(models.Model):
     observacao = models.CharField(max_length=400)
     
 class PromocoesDaPizzaria(models.Model):
-    def __unicode__(self): 
-        return self.nome
-    nome = models.CharField(max_length=100)
-    item = models.ForeignKey(Item)
-    itemExtra = models.ForeignKey(Produto)
-    dataInicio = models.DateField()
-    dataTermino = models.DateField()
+	def __unicode__(self): 
+		return self.nome
+	nome = models.CharField(max_length=100)
+	produtoBase = models.IntegerField()
+	quantiaProdutoBase = models.IntegerField()
+	ingredienteBase = models.IntegerField()
+	itemExtra = models.IntegerField()
+	dataInicio = models.DateField()
+	dataTermino = models.DateField()
+	desconto = models.DecimalField(max_digits=7 , decimal_places=2)
 
 class Pagamento(models.Model):
     def __unicode__(self): 

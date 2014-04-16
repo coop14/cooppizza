@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Promoção</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+
+function showbox() {
+	var r = document.forms[0].base;
+	if (r[0].checked) {
+		document.getElementById("showProduto").style.display="inline";
+		document.getElementById("showIngrediente").style.display="none";
+	}
+	else if (r[1].checked) {
+		document.getElementById("showIngrediente").style.display="inline";
+		document.getElementById("showProduto").style.display="none";
+	}
+}
+    </script>
+  </head>
+  <body>
+    <h1>Promoção</h1>
+	<br><br>
+	<div class="form">
+      <form method="post" action="{% url 'promoEditar' promocao.id %}">
+        {% csrf_token %}
+		<ul>
+		<input type="hidden" name="id" value="{{promocao.id}}" />
+		<label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" size="40" value="{{promocao.nome}}" />
+		<br><br>
+		<label for="dataInicio">Data de Início:</label>
+		<input type="date" id="dataInicio" name="dataInicio" value="{{stringDataInicio}}" />
+		<br>
+		<label for="dataTermino">Data de Término:</label>
+        <input type="date" id="dataTermino" name="dataTermino" value="{{stringDataTermino}}" />
+		<br><br>
+        <label for="desconto">Desconto:</label>
+        <input type="text" id="desconto" name="desconto" value="{{promocao.desconto}}" />
+		<br><br>
+		<form>
+			{% if checkProduto %}
+				Produto<INPUT TYPE="radio" NAME="base" onclick="showbox();" checked>
+				Ingrediente<INPUT TYPE="radio" NAME="base" onclick="showbox();"> 
+			{% else %}
+				Produto<INPUT TYPE="radio" NAME="base" onclick="showbox();"> 
+				Ingrediente<INPUT TYPE="radio" NAME="base" onclick="showbox();" checked> 
+			{% endif %}
+			<br>
+			<span id="showProduto" {% if checkProduto %} style="display:inline" {% else %} style="display:none"{% endif %}>
+				<label>Produto:</label>
+				<SELECT name="produtoBase">
+					{% if latest_produto_list %}
+						<ul>
+						<OPTION value=0>Nenhum produto</OPTION>
+						{% for produto in latest_produto_list %}
+							{% if promocao.produtoBase = produto.id %}
+								<OPTION value={{produto.id}} selected="selected">{{ produto.nome }}</OPTION>
+							{% else %}
+								<OPTION value={{produto.id}}>{{ produto.nome }}</OPTION>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					{% else %}
+						<OPTION value=0>Não existem produtos</OPTION>
+					{% endif %}
+				</SELECT>
+				<label>Quantidade:</label>
+				<input type="number" name="quantiaProdutoBase" value="{{promocao.quantiaProdutoBase}}" class="numeric"/>
+			</span>
+			<span id="showIngrediente" {% if checkProduto %} style="display:none" {% else %} style="display:inline"{% endif %}>
+				<label>Ingrediente:</label>
+				<SELECT name="ingredienteBase">
+					{% if latest_ingrediente_list %}
+						<ul>
+						<OPTION value=0>Nenhum ingrediente</OPTION>
+						{% for ingrediente in latest_ingrediente_list %}
+							{% if promocao.ingredienteBase = ingrediente.id %}
+								<OPTION value={{ingrediente.id}} selected="selected">{{ ingrediente.nome }}</OPTION>
+							{% else %}
+								<OPTION value={{ingrediente.id}}>{{ ingrediente.nome }}</OPTION>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					{% else %}
+						<OPTION value=0>Não existem ingredientes </OPTION>
+					{% endif %}
+				</SELECT>
+			</span>
+		</form>
+		<br><br>
+		<label for="itemExtra">Item brinde:</label>
+		<SELECT name="itemExtra"> 
+			{% if latest_produto_list %}
+			<ul>
+			<OPTION value=0>Nenhum Produto</OPTION>
+			{% for produto in latest_produto_list %}
+				{% if promocao.itemExtra = produto.id %}
+					<OPTION value={{produto.id}} selected="selected">{{ produto.nome }}</OPTION>
+				{% else %}
+					<OPTION value={{produto.id}}>{{ produto.nome }}</OPTION>
+				{% endif %}
+			{% endfor %}
+			</ul>
+			{% else %}
+				<OPTION value=0>Não existem produtos </OPTION>
+			{% endif %}
+		</SELECT>
+		<br><br>
+        <input type="submit" value="Alterar"/>
+		</ul>
+      </form>
+	<br><br>
+    </div>
+	<a href="{% url 'promoExcluir' promocao.id %}">Excluir</a>
+	<br><br>
+    <a href="{% url 'promoListar' %}">Voltar</a>
+  </body>
+</html>

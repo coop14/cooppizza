@@ -1,0 +1,11 @@
+{% if latest_promo_list %}
+    <ul>
+    {% for promocao in latest_promo_list %}
+        <li><a href="/promocao/{{ promocao.id }}/">{{ promocao.nome }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não existem promoções.</p>
+{% endif %}
+	<br>
+    <a href="{% url 'promoIndex' %}">Voltar</a>

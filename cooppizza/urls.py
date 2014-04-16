@@ -9,4 +9,5 @@ urlpatterns = patterns('',
   url(r'^cardapio/', include('cooppizza.cardapio.urls')),
   url(r'^pedidos/', include('cooppizza.pedidos.urls')),
   url(r'^feedback/', include('cooppizza.formFeedback.urls')),
+  url(r'^promocao/', include('cooppizza.promocao.urls')),
 )

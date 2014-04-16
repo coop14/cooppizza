@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'cooppizza.cardapio',
     'cooppizza.pedidos',
     'cooppizza.formFeedback',
+    'cooppizza.promocao',
 )
 
 MIDDLEWARE_CLASSES = (
