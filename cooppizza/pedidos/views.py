@@ -11,15 +11,10 @@ def indexPedido(request):
   return HttpResponse(template.render(RequestContext(request)))
 
 def pizzasPedido(request):
-	try:
-		pizzas = Pizza.objects.all()
-		ingredientes = Ingrediente.objects.all()
-		pizzasingredientes = PizzaIngrediente.objects.all()
-	except (Pizza.DoesNotExist):
-		raise Http404
-	else: 
-		return render(request, 'pizzasPedido.html', {'pizzas':pizzas,
-		'ingredientes':ingredientes, 'pizzasingredientes':pizzasingredientes})
+  pizzas = Pizza.objects.all()
+  ingredientes = Ingrediente.objects.all()
+  pizzasingredientes = PizzaIngrediente.objects.all()
+  return render(request, 'pizzasPedido.html', {'pizzas':pizzas, 'ingredientes':ingredientes, 'pizzasingredientes':pizzasingredientes})
 
 def bebidasPedido(request):
 	try:
@@ -44,10 +39,18 @@ def bebidaAdiciona(request, bebida_id):
 		raise PermissionDenied
 
 def carrinhoPedido(request, produto_id):
-	try:
-		produto_id = Produto.objects.get(pk=produto_id)
-	except (Produto.DoesNotExist):
-		raise Http404
-	else: 
-		return render(request, 'carrinhoPedido.html',
-		 {'produto':produto})
+  try:
+    produto_id = Produto.objects.get(pk=produto_id)
+  except (Produto.DoesNotExist):
+    raise Http404
+  else:
+    pizzas = Pizza.objects.all()
+    ingredientes = Ingrediente.objects.all()
+    pizzasingredientes = PizzaIngrediente.objects.all()
+
+    response = HttpResponse()
+    response = render(request, 'pizzasPedido.html', {'pizzas':pizzas,
+    'ingredientes':ingredientes, 'pizzasingredientes':pizzasingredientes})
+    response.set_cookie(key='id', value=1)
+
+    return response
