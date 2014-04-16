@@ -25,7 +25,7 @@ def webAcesso(request):
       if cliente.senha == request.POST['senha']:
         return redirect('/pedidos/')
       else:
-        raise PermissionDenied
+        return render(request, 'indexWeb.html', {'error': True})
   else:
     raise PermissionDenied
 
