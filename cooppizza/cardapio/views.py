@@ -40,7 +40,7 @@ def ingredienteConsulta(request):
 	      raise Http404
 	    else:
 	      return redirect(reverse('ingredienteDados', args=[ingrediente.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def ingredienteAltera(request, ingrediente_id):
@@ -62,7 +62,7 @@ def ingredienteEdita(request, ingrediente_id):
 			raise Http404
 		else: 
 			return redirect(reverse('ingredienteDados', args=[ingrediente.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 
@@ -106,7 +106,7 @@ def pizzaConsulta(request):
 	      raise Http404
 	    else:
 	      return redirect(reverse('pizzaDados', args=[pizza.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def pizzaAltera(request, pizza_id):
@@ -129,7 +129,7 @@ def pizzaEdita(request, pizza_id):
 			raise Http404
 		else: 
 			return redirect(reverse('pizzaDados', args=[pizza.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def pizzaDados(request, pizza_id):
@@ -186,7 +186,7 @@ def pizzaIngredienteAdiciona(request, pizza_id):
 			raise Http404
 		else: 
 			return redirect(reverse('pizzaDados', args=[pizza.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def bebidaNova(request):
@@ -211,7 +211,7 @@ def bebidaConsulta(request):
 	      raise Http404
 	    else:
 	      return redirect(reverse('bebidaDados', args=[bebida.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def bebidaAltera(request, bebida_id):
@@ -234,7 +234,7 @@ def bebidaEdita(request, bebida_id):
 			raise Http404
 		else: 
 			return redirect(reverse('bebidaDados', args=[bebida.id]))
-  	else:
+	else:
   		raise PermissionDenied
 
 def bebidaDados(request, bebida_id):
