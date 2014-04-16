@@ -16,35 +16,55 @@
         {% block content %}
     <h1>Contact us</h1>
 
-<div class="field{% if form.message.errors %} errors{% endif %}">
-    {% if form.message.errors %}
-        <ul>
-        {% for error in form.message.errors %}
-            <li><strong>{{ error }}</strong></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    <label for="id_message">Message:</label>
-    {{ form.message }}
-</div>
-
-    <form action="" method="post">
-        <div class="field">
-            {{ form.subject.errors }}
-            <label for="id_subject">Subject:</label>
-            {{ form.subject }}
-        </div>
-        <div class="field">
-            {{ form.email.errors }}
-            <label for="id_email">Your e-mail address:</label>
-            {{ form.email }}
-        </div>
-        <div class="field">
-            {{ form.message.errors }}
-            <label for="id_message">Message:</label>
-            {{ form.message }}
-        </div>
-        {% csrf_token %}
-        <input type="submit" value="Submit">
-    </form>
+        <form action="{% url 'obrigado' %}" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Assunto:</label>
+                {{ form.assunto }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Data do Feedback:</label>
+                {{ form.dataDoFeedback }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Tipo de Pedido:</label>
+                {{ form.tipoDePedido }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Forma de Pedido:</label>
+                {{ form.formaDePedido }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">precoPedido:</label>
+                {{ form.precoPedido }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Observações:</label>
+                {{ form.observacoes }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject.errors }}
+                <label for="id_subject">Assunto:</label>
+                {{ form.assunto }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.message.errors }}
+                <label for="id_message">Nota:</label>
+                {{ form.nota }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.email.errors }}
+                <label for="id_sender">E-mail:</label>
+                {{ form.email }}
+            </div>
+            <p><input type="submit" value="Send message" /></p>
+        </form>
+        
         {% endblock %}

@@ -3,19 +3,18 @@
 
 
 {% block navbar_links %}
-<li class="active"><a href="#">Principal</a></li>
-<li><a href="#">Pedido</a></li>
-<li><a href="#">BI</a></li>
-<li><a href="#">Marketing/Feedback</a></li>
+  <li><a href="{% url 'indexPedido' %}">Pedido</a></li>
+  <li><a href="#">BI</a></li>
+  <li><a href="#">Marketing</a></li>
+  <li><a href="{% url 'indexCardapio' %}">Cardápio</a></li>
+  <li><a href="{% url 'indexFeedback' %}">Feedback</a></li>
+  <li><a href="{% url 'indexClientes' %}">Login</a></li>
 {% endblock %}
 
 {% block sidebar %}
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
       	{% block sidebar_links %}
-	        <li><a href="{% url 'pizza' %}">Pizza</a></li>
-	        <li><a href="{% url 'bebida' %}">Bebida</a></li>
-	        <li><a href="{% url 'ingrediente' %}">Ingrediente</a></li>
         {% endblock %}
       </ul>
     </div>

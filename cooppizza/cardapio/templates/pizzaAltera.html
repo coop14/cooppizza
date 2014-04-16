@@ -1,4 +1,4 @@
-{% extends "indexCardapio.html" %}
+    {% extends "indexCardapio.html" %}
 
     {% load staticfiles %}
 
@@ -33,7 +33,20 @@
     <h1> Composição da Pizza - Recheios </h1>
     <ul>
 {% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
-      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} -- {{ pizzaingrediente.medida }} -- {{ pizzaingrediente.isRecheio }}
+            <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} --
+        {% if pizzaingrediente.medida == 'KG'%}
+        kilograma{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'PT'%}
+        Pitada{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'XC'%}
+        Xícaras{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'CL'%}
+        Colher{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {{ pizzaingrediente.isRecheio }}
         <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletarIngrediente' pizza.id pizzaingrediente.id %}">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>

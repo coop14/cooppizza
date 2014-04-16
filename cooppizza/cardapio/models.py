@@ -8,7 +8,7 @@ from cooppizza.clientes.models import Cliente, Endereco
 class Produto(models.Model):
     def __unicode__(self): 
         return self.nome
-    nome = models.CharField(max_length=200, unique=True)
+    nome = models.CharField(max_length=200)
     preco = models.DecimalField(max_digits=7 , decimal_places=2)
     isPizza = models.BooleanField()
 
@@ -58,6 +58,7 @@ class PizzaIngrediente(models.Model):
     )
     medida = models.CharField(max_length=2, choices=MEDIDA_CHOICES)
     isRecheio = models.BooleanField(default=True)
+    
 
 
 
@@ -76,7 +77,7 @@ class Item(models.Model):
         return u'%s %s' % (self.quantidade, self.produto.nome)
     produto = models.ForeignKey(Produto)
     pedido = models.ForeignKey(Pedido)
-    quantidade = models.DecimalField(max_digits=7 , decimal_places=2)
+    quantidade = models.DecimalField(max_digits=7 , decimal_places=0)
     UM = 'UM'
     DOIS = 'DO'
     TRES = 'TR'

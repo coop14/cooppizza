@@ -5,8 +5,12 @@ from django.template import RequestContext, loader
 
 from cooppizza.clientes.models import Cliente, Endereco
 
+def indexClientes(request):
+  template = loader.get_template('indexClientes.html')
+  return HttpResponse(template.render(RequestContext(request)))
+
 def web(request):
-  template = loader.get_template('clientes/indexWeb.html')
+  template = loader.get_template('indexWeb.html')
   return HttpResponse(template.render(RequestContext(request)))
 
 def webAcesso(request):
@@ -24,11 +28,11 @@ def webAcesso(request):
     raise PermissionDenied
 
 def index(request):
-  template = loader.get_template('clientes/index.html')
+  template = loader.get_template('indexc.html')
   return HttpResponse(template.render(RequestContext(request)))
 
 def clienteNovo(request):
-  return render(request, 'clientes/cliente.html')
+  return render(request, 'cliente.html')
 
 def clienteAdicionar(request):
   if request.method == 'POST':
@@ -64,14 +68,14 @@ def clienteDados(request, cliente_id):
   except (Cliente.DoesNotExist):
     raise Http404
   else:
-    return render(request, 'clientes/enderecos.html', {
+    return render(request, 'enderecos.html', {
       'cliente': cliente
       }
     )
 
 def clienteLista(request):
   clientes = Cliente.objects.all()
-  return render(request, 'clientes/clientes.html', {
+  return render(request, 'clientes.html', {
     'clientes': clientes
     }
   )
@@ -82,7 +86,7 @@ def enderecoNovo(request, cliente_id):
   except (Cliente.DoesNotExist):
     raise Http404
   else:
-    return render(request, 'clientes/endereco.html', {
+    return render(request, 'endereco.html', {
       'cliente': cliente
       }
     )

@@ -8,7 +8,7 @@ from cooppizza.cardapio.models import Produto, Pizza, Ingrediente, Bebida, Pizza
 
 # Create your views here.
 
-def index(request):
+def indexCardapio(request):
 	template = loader.get_template('indexCardapio.html')
 	return HttpResponse(template.render(RequestContext(request)))
 
@@ -177,7 +177,10 @@ def pizzaIngredienteAdiciona(request, pizza_id):
 		try:
 			ingrediente = Ingrediente.objects.get(nome=request.POST['nome'])
 			pizza = Pizza.objects.get(pk=pizza_id)
-			pizzaIngrediente = PizzaIngrediente(quantidadeDeUso=request.POST['quantidadeDeUso'], pizza=pizza, ingrediente=ingrediente, medida=request.POST['medida']) 
+			if request.POST.__contains__('isRecheio'):
+				pizzaIngrediente = PizzaIngrediente(quantidadeDeUso=request.POST['quantidadeDeUso'], pizza=pizza, ingrediente=ingrediente, medida=request.POST['medida'], isRecheio=True) 
+			else:
+				pizzaIngrediente = PizzaIngrediente(quantidadeDeUso=request.POST['quantidadeDeUso'], pizza=pizza, ingrediente=ingrediente, medida=request.POST['medida'], isRecheio=False) 
 			pizzaIngrediente.save()
 		except (Ingrediente.DoesNotExist):
 			raise Http404

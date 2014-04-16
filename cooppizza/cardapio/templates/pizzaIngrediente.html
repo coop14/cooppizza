@@ -26,7 +26,20 @@
     <h1> Composição da Pizza - Recheios </h1>
     <ul>
 {% for pizzaingrediente in pizza.pizzaingrediente_set.all %}
-      <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} -- {{ pizzaingrediente.medida }} -- {{ pizzaingrediente.isRecheio }}
+            <li> {{ pizzaingrediente.ingrediente }} - {{ pizzaingrediente.quantidadeDeUso }} -
+        {% if pizzaingrediente.medida == 'KG'%}
+        kilograma{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'PT'%}
+        Pitada{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'XC'%}
+        Xícara{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {% if pizzaingrediente.medida == 'CL'%}
+        Colher{{ pizzaingrediente.quantidadeDeUso|pluralize }}
+        {% endif %}
+        {{ pizzaingrediente.isRecheio }}
         <a type="button" class="btn btn-small btn-danger" href="{% url 'pizzaDeletarIngrediente' pizza.id pizzaingrediente.id %}">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
@@ -59,10 +72,11 @@
           </li>
           <li>
             <label>É recheio?</label>
-            <input type="checkbox" name="isRecheio"/>
+            isRecheio = <input type="checkbox" name="isRecheio" checked="checked" id="myCheck">
           </li>
-            <input type="submit" value="Adicionar"/>
+            <input class="btn btn-small btn-success" type="submit" value="Adicionar"/>
         </ul>
+        </form>
     </div> 
     <br>
     <br>

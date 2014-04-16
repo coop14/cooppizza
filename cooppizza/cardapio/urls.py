@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from cooppizza.cardapio import views
 
 urlpatterns = patterns('',
-	url(r'^$', views.index, name='index'),
+	url(r'^$', views.indexCardapio, name='indexCardapio'),
 	url(r'^pizza$', views.pizza, name='pizza'),
 	url(r'^bebida$', views.bebida, name='bebida'),
 	url(r'^ingrediente$', views.ingrediente, name='ingrediente'),

@@ -2,7 +2,8 @@ from django.conf.urls import patterns, url
 from cooppizza.clientes import views
 
 urlpatterns = patterns('',
-  url(r'^$', views.index, name='index'),
+  url(r'^$', views.indexClientes, name='indexClientes'),
+  url(r'^a$', views.index, name='index'),
   url(r'^web$', views.web, name='web'), # WEB
   url(r'^acesso$', views.webAcesso, name='webAcesso'), # WEB
   url(r'^novo$', views.clienteNovo, name='clienteNovo'),

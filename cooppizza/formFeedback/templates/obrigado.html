@@ -1,0 +1,19 @@
+{% extends "indexFeedback.html" %}
+
+        {% load staticfiles %}
+
+        {% block stylesheets %}
+            {{ block.super }}
+
+            <link href="{% static "css/rh/rh_list.css" %}" rel="stylesheet">
+
+        {% endblock %}
+
+        {% block title %}
+                CooPizza - Contact Us
+        {% endblock %}
+
+        {% block content %}
+    <h1>Obrigado por compartilhar sua experiência conosco!</h1>
+
+        {% endblock %}
