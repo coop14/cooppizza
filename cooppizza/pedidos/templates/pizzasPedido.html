@@ -34,20 +34,21 @@
 	        	<td>{{ pizza.produto.nome }}</td>
 	        	<td style="text-align: center;">	
               <a type="button" class="btn btn-small btn-info" href="#">
-                    <span class="glyphicon glyphicon-list-alt"></span></a>
-            	</td>
-            	<td>R$ {{ pizza.produto.preco }}</td>
-              <td style="text-align: center;">
-                <div class="element">
-                  <a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedido' pizza.produto.id %}">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                  </a>
-                </div>
-              </td>
+                <span class="glyphicon glyphicon-list-alt"></span>
+              </a>
+            </td>
+            <td>R$ {{ pizza.produto.preco }}</td>
+            <td style="text-align: center;">
+              <div class="element">
+                <a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedidoAdicionar' pizza.produto.id %}">
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                </a>
+              </div>
+            </td>
 	        </tr>
 	    {% endif %}
 	    {% endif %}
     {% endfor %}
-      </table>
+    </table>
 
   {% endblock %}
