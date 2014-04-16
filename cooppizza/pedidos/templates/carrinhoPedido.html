@@ -10,6 +10,10 @@
 	{% block title %}
 		Pizzas
 	{% endblock %}
+  
+  {% block extra_head %}
+  <script type="text/javascript" src="/static/js/pedidos.js"></script>
+	{% endblock %}
 
 	{% block content %}
   
@@ -29,8 +33,29 @@
               <span class="glyphicon glyphicon-list-alt"></span>
             </a>
           </td>
-          <td>R$ {{ item.produto.preco }}</td>
-          <td>{{ item.quantidade }}</td>
+          <td style="text-align: center;">R$ {{ item.produto.preco }}</td>
+          <td style="text-align: center;">
+            <select class="pedido_pizza_quantidade" data-quantidade="{{ item.quantidade }}">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+            </select>
+          </td>
           <td style="text-align: center;">
             <div class="element">
               <a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedidoRemover' item.produto.id %}">

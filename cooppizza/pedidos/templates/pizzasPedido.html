@@ -8,9 +8,11 @@
 	{% endblock %}
 
 	{% block title %}
-
 		Pizzas
+	{% endblock %}
 
+  {% block extra_head %}
+  <script type="text/javascript" src="/static/js/pedidos.js"></script>
 	{% endblock %}
 
 	{% block content %}
@@ -37,7 +39,7 @@
                 <span class="glyphicon glyphicon-list-alt"></span>
               </a>
             </td>
-            <td>R$ {{ pizza.produto.preco }}</td>
+            <td style="text-align: center;">R$ {{ pizza.produto.preco }}</td>
             <td style="text-align: center;">
               <div class="element">
                 <a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedidoAdicionar' pizza.produto.id %}">
