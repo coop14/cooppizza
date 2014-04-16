@@ -13,10 +13,13 @@ def indexPedido(request):
 def pizzasPedido(request):
 	try:
 		pizzas = Pizza.objects.all()
+		ingredientes = Ingrediente.objects.all()
+		pizzasingredientes = PizzaIngrediente.objects.all()
 	except (Pizza.DoesNotExist):
 		raise Http404
 	else: 
-		return render(request, 'pizzasPedido.html', {'pizzas':pizzas})
+		return render(request, 'pizzasPedido.html', {'pizzas':pizzas,
+		'ingredientes':ingredientes, 'pizzasingredientes':pizzasingredientes})
 
 def bebidasPedido(request):
 	try:

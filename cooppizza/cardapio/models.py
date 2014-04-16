@@ -8,7 +8,7 @@ from cooppizza.clientes.models import Cliente, Endereco
 class Produto(models.Model):
     def __unicode__(self): 
         return self.nome
-    nome = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200) 
     preco = models.DecimalField(max_digits=7 , decimal_places=2)
     isPizza = models.BooleanField()
 

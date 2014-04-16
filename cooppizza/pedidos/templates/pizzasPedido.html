@@ -22,8 +22,9 @@
 			<tr>
 
 				<th>Nome</th>
-				<th>Preço (P)</th>
-				<th>Selecionar</th>
+				<th>Ingredientes</th>
+				<th>Preço</th>
+				<th>Adicionar ao Carrinho</th>
 			
 			</tr>
 
@@ -31,21 +32,26 @@
 
 	{% for pizza in pizzas %}
 		{% if pizza.tipoDePizza == 'normal' %}
+		{% if pizza.tamanho == 'G' %}
 	      	<tr>
 	        	<td>{{ pizza.produto.nome }}</td>
-	        	<td>R$ {{ pizza.produto.preco }}</td>
+	        	<td>	
+	        	{% for pizzaingrediente in pizza.pizzasingrediente_set.all %}
+                	{{ pizzaingrediente.ingrediente }}
+                {% endfor %}
+            	</td>
+            	<td>R$ {{ pizza.produto.preco }}</td>
 	        	<td>
 	          	<div class="element">
-			  	  <!-- add -->
-			  	  <a type="button" href="{% url 'carrinhoPedido' pizza.produto.id %}" class="btn btn-lg btn-success btn-add">
-			  	  	Selecionar
+			  	  	<a type="button" class="btn btn-small btn-primary" href="{% url 'carrinhoPedido' pizza.produto.id %}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
 			  	  </a>
 			  	</div>
 	        	</td>
 	        </tr>
 	    {% endif %}
+	    {% endif %}
     {% endfor %}
-
       </table>
     
 
@@ -86,7 +92,7 @@
 			
 			</tr>
 
-	<h1> Pizzas Doce </h1>
+	<h1> Pizzas Doces </h1>
 
 	{% for pizza in pizzas %}
 		{% if pizza.tipoDePizza == 'doce' %}
